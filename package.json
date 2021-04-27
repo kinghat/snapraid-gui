@@ -1,0 +1,13 @@
+{
+  "name": "snapraid-gui",
+  "version": "0.0.1",
+  "description": "a frontend to your snapraid world",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "snapraid"
+  ],
+  "author": "kinghat",
+  "license": "MIT"
+}
