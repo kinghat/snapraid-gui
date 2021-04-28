@@ -3,7 +3,10 @@ lockfileVersion: 5.3
 importers:
 
   .:
-    specifiers: {}
+    specifiers:
+      pnpm: ^6.2.1
+    devDependencies:
+      pnpm: 6.2.1
 
   apps/client:
     specifiers:
@@ -386,6 +389,12 @@ packages:
 
   /path-parse/1.0.6:
     resolution: {integrity: sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==}
+    dev: true
+
+  /pnpm/6.2.1:
+    resolution: {integrity: sha512-aSrlGL3703pXhMaxFpFLAFakvpla0PaGN2/zOh5oG2qbvJ+jKuGkpHPhpLyAnhs/z+Je3wBaYA7vETu1f1xwqQ==}
+    engines: {node: '>=12.17'}
+    hasBin: true
     dev: true
 
   /postcss-modules-extract-imports/3.0.0_postcss@8.2.13:

@@ -3,11 +3,15 @@
   "version": "0.0.1",
   "description": "a frontend to your snapraid world",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "snapraid"
   ],
   "author": "kinghat",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "pnpm": "^6.2.1"
+  }
 }
