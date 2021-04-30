@@ -4,9 +4,9 @@ importers:
 
   .:
     specifiers:
-      pnpm: ^6.2.1
+      pnpm: ^6.2.3
     devDependencies:
-      pnpm: 6.2.1
+      pnpm: 6.2.3
 
   apps/client:
     specifiers:
@@ -391,8 +391,8 @@ packages:
     resolution: {integrity: sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==}
     dev: true
 
-  /pnpm/6.2.1:
-    resolution: {integrity: sha512-aSrlGL3703pXhMaxFpFLAFakvpla0PaGN2/zOh5oG2qbvJ+jKuGkpHPhpLyAnhs/z+Je3wBaYA7vETu1f1xwqQ==}
+  /pnpm/6.2.3:
+    resolution: {integrity: sha512-qYRrxYyN14tqeMGu7E3P+INXDiYbGojn5mitVfUxidO9OsSnTGSqT85nkslfKW8YfChlzFVN0XdG+1Tj86tKhA==}
     engines: {node: '>=12.17'}
     hasBin: true
     dev: true

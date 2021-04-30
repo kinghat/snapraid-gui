@@ -1,6 +1,7 @@
 {
   "name": "snapraid-gui",
   "version": "0.0.1",
+  "private": true,
   "description": "a frontend to your snapraid world",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -12,6 +13,6 @@
   "author": "kinghat",
   "license": "MIT",
   "devDependencies": {
-    "pnpm": "^6.2.1"
+    "pnpm": "^6.2.3"
   }
 }
