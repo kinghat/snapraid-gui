@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc
 
-ENV DENO_VERSION=1.9.2
+ENV DENO_VERSION=1.10.1
 
 RUN apk add --virtual .download --no-cache curl \
   && curl -fsSL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip \
@@ -26,7 +26,7 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 # REMOVE ASAP (this is due to dynamic link in deno 1.8.0)
 # https://github.com/denoland/deno/issues/9686
-RUN apk add libstdc++
+# RUN apk add libstdc++
 
 RUN apk --update add python3 git smartmontools tzdata \
   && apk add snapraid --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted \
