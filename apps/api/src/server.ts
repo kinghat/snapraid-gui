@@ -7,7 +7,7 @@ const router = new Router();
 const PORT = 8080;
 
 router.get("/api", ({ response }: RouterContext) => {
-  response.body = `Hi!! 👋 \n`;
+  response.body = `Hi! 👋 \n`;
 });
 
 app.use(router.routes());

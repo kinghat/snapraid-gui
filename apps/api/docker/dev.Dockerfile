@@ -13,7 +13,7 @@ VOLUME /config
 COPY docker/docker-entry.sh  /
 RUN chmod 755 /docker-entry.sh
 
-RUN ["/docker-entry.sh"]
+# RUN ["/docker-entry.sh"]
 
 # The port that your application listens to.
 EXPOSE 8080 

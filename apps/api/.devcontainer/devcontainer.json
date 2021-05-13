@@ -2,26 +2,25 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/deno
 {
   "name": "snapraid-api",
-  "dockerFile": "Dockerfile",
+  "dockerFile": "test.Dockerfile",
   "context": "..",
 
   // Set *default* container specific settings.json values on container create.
   "settings": {
     // "terminal.integrated.shell.linux": "/bin/sh"
-    "terminal.integrated.defaultProfile.linux": "/bin/sh"
+    "terminal.integrated.defaultProfile.linux": ["/bin/sh"]
+    // "terminal.integrated.defaultProfile.linux": ["-l"]
   },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": ["denoland.vscode-deno"],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [8080],
-  // "postStartCommand": "deno run --allow-net src/server.ts",
-  // "postCreateCommand": "deno run --allow-net src/server.ts",
+  "forwardPorts": [8080]
+  // "postStartCommand": "deno run --allow-net src/server.ts"
+  // "postCreateCommand": "deno run --allow-net src/server.ts"
 
-  // Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
-  // "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
-
-  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "deno"
+  // "remoteUser": "deno",
+  // "containerUser": "deno"
+  // "updateRemoteUserUID": false
 }
