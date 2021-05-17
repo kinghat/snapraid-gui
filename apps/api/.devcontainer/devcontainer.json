@@ -21,7 +21,7 @@
   // "postStartCommand": "deno run --allow-net src/server.ts"
   // "postCreateCommand": "deno run --allow-net src/server.ts"
 
-  // "remoteUser": "deno"
+  // "remoteUser": "deno",
   // "containerUser": "deno"
   // "updateRemoteUserUID": false
 }
