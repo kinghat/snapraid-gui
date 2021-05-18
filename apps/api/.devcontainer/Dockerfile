@@ -4,6 +4,8 @@ FROM ubuntu:20.04
 
 ENV DENO_VERSION=1.10.2
 
+SHELL ["/bin/bash", "-c"]
+
 RUN apt-get -qq update \
   && apt-get upgrade -y -o Dpkg::Options::="--force-confold" \
   && apt-get -qq install -y ca-certificates curl unzip --no-install-recommends \
@@ -14,6 +16,7 @@ RUN apt-get -qq update \
   && chmod 755 deno \
   && mv deno /usr/bin/deno \
   && apt-get -qq remove -y ca-certificates curl unzip \
+  && apt-get install -y sudo \
   && apt-get -y -qq autoremove \
   && apt-get -qq clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -23,8 +26,13 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 # Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-  && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+# RUN groupadd --gid $USER_GID $USERNAME \
+#   && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+RUN adduser $USERNAME --shell /bin/bash --quiet
+
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
+  && chmod 0440 /etc/sudoers.d/$USERNAME
 
 RUN mkdir /deno-dir/ \
   && chown deno:deno /deno-dir/
@@ -37,23 +45,22 @@ RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-SHELL ["/bin/bash", "-c"]
 
-RUN mkdir -p /loops \
+RUN mkdir -p /mnt/loops \
   && mkdir -p /mnt/snapraid/disk{00..03} \
   && mkdir -p /mnt/snapraid/parity{00..01} \
-  && dd if=/dev/zero of=/loops/disk00.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/loops/disk01.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/loops/disk02.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/loops/disk03.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/loops/parity00.img bs=1 count=0 seek=250M \
-  && dd if=/dev/zero of=/loops/parity01.img bs=1 count=0 seek=250M \
-  && mkfs.ext4 -q /loops/disk00.img \
-  && mkfs.ext4 -q /loops/disk01.img \
-  && mkfs.ext4 -q /loops/disk02.img \
-  && mkfs.ext4 -q /loops/disk03.img \
-  && mkfs.ext4 -q /loops/parity00.img \
-  && mkfs.ext4 -q /loops/parity01.img 
+  && dd if=/dev/zero of=/mnt/loops/disk00.img bs=1 count=0 seek=200M \
+  && dd if=/dev/zero of=/mnt/loops/disk01.img bs=1 count=0 seek=200M \
+  && dd if=/dev/zero of=/mnt/loops/disk02.img bs=1 count=0 seek=200M \
+  && dd if=/dev/zero of=/mnt/loops/disk03.img bs=1 count=0 seek=200M \
+  && dd if=/dev/zero of=/mnt/loops/parity00.img bs=1 count=0 seek=250M \
+  && dd if=/dev/zero of=/mnt/loops/parity01.img bs=1 count=0 seek=250M \
+  && mkfs.ext4 -q /mnt/loops/disk00.img \
+  && mkfs.ext4 -q /mnt/loops/disk01.img \
+  && mkfs.ext4 -q /mnt/loops/disk02.img \
+  && mkfs.ext4 -q /mnt/loops/disk03.img \
+  && mkfs.ext4 -q /mnt/loops/parity00.img \
+  && mkfs.ext4 -q /mnt/loops/parity01.img 
 # && mount /loops/disk00.img /mnt/snapraid/disk00 \
 # && mount /loops/disk01.img /mnt/snapraid/disk01 \
 # && mount /loops/disk02.img /mnt/snapraid/disk02 \
