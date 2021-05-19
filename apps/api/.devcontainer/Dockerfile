@@ -60,7 +60,7 @@ RUN mkdir -p /mnt/loops \
   && mkfs.ext4 -q /mnt/loops/disk02.img \
   && mkfs.ext4 -q /mnt/loops/disk03.img \
   && mkfs.ext4 -q /mnt/loops/parity00.img \
-  && mkfs.ext4 -q /mnt/loops/parity01.img 
+  && mkfs.ext4 -q /mnt/loops/parity01.img
 # && mount /loops/disk00.img /mnt/snapraid/disk00 \
 # && mount /loops/disk01.img /mnt/snapraid/disk01 \
 # && mount /loops/disk02.img /mnt/snapraid/disk02 \
@@ -73,7 +73,6 @@ RUN mkdir -p /mnt/loops \
 # && mount -o loop=/dev/disk03 /loops/disk03.img /mnt/snapraid/disk03 \
 # && mount -o loop=/dev/parity00 /loops/parity00.img /mnt/snapraid/parity00 \
 # && mount -o loop=/dev/parity01 /loops/parity01.img /mnt/snapraid/parity01
-# && echo ls -lhs /loops/disk00.img \
 
 COPY .devcontainer/config/snapraid.conf /etc
 
