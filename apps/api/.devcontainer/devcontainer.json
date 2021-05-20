@@ -19,8 +19,8 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [8080],
   // "postStartCommand": "deno run --allow-net src/server.ts"
+  // "postCreateCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01 && sudo chown -R deno:deno /mnt/snapraid/disk*",
   "postCreateCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01 && sudo chown -R deno:deno /mnt/snapraid/disk*",
-  // "postAttachCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01",
 
   // "remoteUser": "deno",
   // "containerUser": "deno",
