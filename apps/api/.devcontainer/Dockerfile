@@ -1,5 +1,4 @@
 # FROM hayd/ubuntu-deno:1.10.1
-
 FROM ubuntu:20.04
 
 ENV DENO_VERSION=1.10.2
@@ -43,8 +42,10 @@ ENV DENO_INSTALL_ROOT /usr/local
 COPY .devcontainer/config/_entry.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+# COPY .devcontainer/config/mount.sh /mount.sh
+# RUN chmod +x /mount.sh
 
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 RUN mkdir -p /mnt/loops \
   && mkdir -p /mnt/snapraid/disk{00..03} \
@@ -61,18 +62,6 @@ RUN mkdir -p /mnt/loops \
   && mkfs.ext4 -q /mnt/loops/disk03.img \
   && mkfs.ext4 -q /mnt/loops/parity00.img \
   && mkfs.ext4 -q /mnt/loops/parity01.img
-# && mount /loops/disk00.img /mnt/snapraid/disk00 \
-# && mount /loops/disk01.img /mnt/snapraid/disk01 \
-# && mount /loops/disk02.img /mnt/snapraid/disk02 \
-# && mount /loops/disk03.img /mnt/snapraid/disk03 \
-# && mount /loops/parity00.img /mnt/snapraid/parity00 \
-# && mount /loops/parity01.img /mnt/snapraid/parity01
-# && mount -o loop=/dev/disk00 /loops/disk00.img /mnt/snapraid/disk00 \
-# && mount -o loop=/dev/disk01 /loops/disk01.img /mnt/snapraid/disk01 \
-# && mount -o loop=/dev/disk02 /loops/disk02.img /mnt/snapraid/disk02 \
-# && mount -o loop=/dev/disk03 /loops/disk03.img /mnt/snapraid/disk03 \
-# && mount -o loop=/dev/parity00 /loops/parity00.img /mnt/snapraid/parity00 \
-# && mount -o loop=/dev/parity01 /loops/parity01.img /mnt/snapraid/parity01
 
 COPY .devcontainer/config/snapraid.conf /etc
 

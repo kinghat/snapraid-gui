@@ -2,28 +2,34 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/deno
 {
   "name": "snapraid-api",
-  "dockerFile": "Dockerfile",
-  "context": "..",
+  // "build": {
+  //   "dockerComposefile": "docker-compose.yml"
+  // },
+  "dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "service": "app",
+  // "dockerFile": "Dockerfile",
+  // "context": "..",
   // "runArgs": ["--cap-add=SYS_ADMIN", "--cap-add=MKNOD"],
-  "runArgs": ["--privileged"],
+  // "runArgs": ["--privileged"],
   // Set *default* container specific settings.json values on container create.
   "settings": {
     // "terminal.integrated.shell.linux": "/bin/sh"
-    "terminal.integrated.defaultProfile.linux": ["/bin/bash"]
+    // "terminal.integrated.defaultProfile.linux": ["/bin/bash"]
     // "terminal.integrated.defaultProfile.linux": ["-l"]
   },
 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": ["denoland.vscode-deno"],
+  "extensions": ["denoland.vscode-deno"]
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [8080],
+  // "forwardPorts": [8080],
   // "postStartCommand": "deno run --allow-net src/server.ts"
   // "postCreateCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01 && sudo chown -R deno:deno /mnt/snapraid/disk*",
-  "postCreateCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01 && sudo chown -R deno:deno /mnt/snapraid/disk*",
+  // "postCreateCommand": "sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00 && sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01 && sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02 && sudo mount /mnt/loops/disk03.img /mnt/snapraid/disk03 && sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00 && sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01 && sudo chown -R deno:deno /mnt/snapraid/disk*",
 
   // "remoteUser": "deno",
   // "containerUser": "deno",
   // "updateRemoteUserUID": true
-  "overrideCommand": false
+  // "overrideCommand": false
 }
