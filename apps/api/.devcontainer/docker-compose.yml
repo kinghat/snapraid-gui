@@ -17,6 +17,9 @@ services:
       - ..:/workspace:cached
       - ./config:/config
       - /dev:/dev
+    # cap_add:
+    #   - SYS_ADMIN
+    #   - MKNOD
     # devices:
     #   - /dev/loop24:/dev/loop24
     # entrypoint: ["/bin/bash", "-c", "/mount.sh"]
