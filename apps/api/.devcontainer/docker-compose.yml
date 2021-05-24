@@ -16,11 +16,14 @@ services:
     volumes:
       - ..:/workspace:cached
       - ./config:/config
+      - /dev:/dev
     # devices:
     #   - /dev/loop24:/dev/loop24
     # entrypoint: ["/bin/bash", "-c", "/mount.sh"]
     # entrypoint: ["/bin/bash", "-c", "/mount.sh"]
     # command: ["bash", "-c", "/mount.sh"]
     privileged: true
+    device_cgroup_rules:
+      - b 7:* rmw
     # Overrides default command so things don't shut down after the process ends.
     # command: sleep infinity
