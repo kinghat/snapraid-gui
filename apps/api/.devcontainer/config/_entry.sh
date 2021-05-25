@@ -1,16 +1,5 @@
 #!/bin/sh
 
-# freedomLoops() {
-#   FILTER='^loop'
-#   lsblk --raw -a --output "NAME,MAJ:MIN" --noheadings | grep -E "$FILTER" | while read LINE; do
-#     DEV=/dev/$(echo "$LINE" | cut -d' ' -f1)
-#     MAJMIN=$(echo "$LINE" | cut -d' ' -f2)
-#     MAJ=$(echo "$MAJMIN" | cut -d: -f1)
-#     MIN=$(echo "$MAJMIN" | cut -d: -f2)
-#     [ -b "$DEV" ] || mknod "$DEV" b "$MAJ" "$MIN"
-#   done
-# }
-
 sudo mount /mnt/loops/disk00.img /mnt/snapraid/disk00
 sudo mount /mnt/loops/disk01.img /mnt/snapraid/disk01
 sudo mount /mnt/loops/disk02.img /mnt/snapraid/disk02

@@ -24,10 +24,6 @@ ARG USERNAME=deno
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-# Create the user
-# RUN groupadd --gid $USER_GID $USERNAME \
-#   && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-
 RUN adduser $USERNAME --shell /bin/bash --quiet
 
 RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
@@ -41,9 +37,6 @@ ENV DENO_INSTALL_ROOT /usr/local
 
 COPY .devcontainer/config/_entry.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
-
-# COPY .devcontainer/config/mount.sh /mount.sh
-# RUN chmod +x /mount.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
