@@ -4,18 +4,15 @@ import { emptyDir, path, walk } from "../deps.ts";
 const snapraidPath = "/mnt/snapraid";
 const prefix = "dummy-";
 const extensions = [".mp3", ".mp4", ".mkv", ".txt"];
-
 const allDisks = [...await allocateDisks("all")];
 const dataDisks = [...await allocateDisks("disk")];
 const parityDisks = [...await allocateDisks("parity")];
 
-// type data = "disk";
-// type parity = "parity";
 type storage = "disk" | "parity" | "all";
 
-console.log(allDisks);
-console.log(parityDisks);
-console.log(dataDisks);
+// console.log(dataDisks);
+// console.log(parityDisks);
+// console.log(allDisks);
 
 async function allocateDisks(disk: storage) {
   const disks = [];
@@ -30,6 +27,23 @@ async function allocateDisks(disk: storage) {
   }
   return disks;
 }
+
+async function printFiles() {
+  // const files = [];
+
+  for await (
+    const entry of walk(snapraidPath, {
+      // maxDepth: 1,
+      includeDirs: false,
+      includeFiles: true,
+      match: [/disk/gi],
+    })
+  ) {
+    // files.push(entry.path);
+    console.log(entry.path);
+  }
+}
+
 async function randomFile() {
   const randomExtension = Math.floor(Math.random() * extensions.length);
   const randomDisk = Math.floor(Math.random() * dataDisks.length);
@@ -45,20 +59,33 @@ async function randomFile() {
     randomFilename,
     crypto.getRandomValues(new Uint8Array((Math.random() + 0.1) * 2 ** 16)),
   );
+
+  console.log(randomFilename);
 }
 
-function createRandomFiles(amount: number) {
-  return Promise.allSettled(
+async function createRandomFiles(amount: number) {
+  await Promise.allSettled(
     Array(amount)
       .fill(0)
       .map((_) => randomFile()),
   );
+
+  console.log(`created ${amount} files.`);
 }
 
-function removeAllFiles() {
-  for (const path of snapraidPath) {
-    emptyDir(path);
+async function removeAllFiles() {
+  for await (
+    const directory of walk(snapraidPath, {
+      maxDepth: 1,
+      includeDirs: true,
+      includeFiles: false,
+      match: [/disk/gi],
+    })
+  ) {
+    emptyDir(directory.path);
   }
+
+  console.log(`removed all files!`);
 }
 
 async function removeSomeRandomFiles(amount: number) {
@@ -81,7 +108,10 @@ async function removeSomeRandomFiles(amount: number) {
 
   for (const file of randomFiles) {
     Deno.remove(file);
+    console.log(file);
   }
+
+  console.log(`removed ${amount} files!`);
 }
 
 function moveSomeFiles() {
@@ -90,6 +120,7 @@ function moveSomeFiles() {
 function copySomeFiles() {
 }
 
-// await createRandomFiles(20);
-removeAllFiles();
-// removeSomeRandomFiles(30);
+// createRandomFiles(20);
+// await removeAllFiles();
+// removeSomeRandomFiles(3);
+await printFiles();
