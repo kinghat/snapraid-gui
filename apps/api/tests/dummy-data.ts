@@ -1,28 +1,45 @@
 // deno run --unstable --allow-read --allow-write tests/dummy-data.ts
-import { emptyDir, walkSync } from "../deps.ts";
+import { emptyDir, path, walk } from "../deps.ts";
 
 const snapraidPath = "/mnt/snapraid";
-// const diskPaths = [
-//   "/mnt/snapraid/disk00/",
-//   "/mnt/snapraid/disk01/",
-//   "/mnt/snapraid/disk02/",
-//   "/mnt/snapraid/disk03/",
-// ];
-const diskPaths = [];
-const parityPaths = [];
-
 const prefix = "dummy-";
-
 const extensions = [".mp3", ".mp4", ".mkv", ".txt"];
 
+const allDisks = [...await allocateDisks("all")];
+const dataDisks = [...await allocateDisks("disk")];
+const parityDisks = [...await allocateDisks("parity")];
+
+// type data = "disk";
+// type parity = "parity";
+type storage = "disk" | "parity" | "all";
+
+console.log(allDisks);
+console.log(parityDisks);
+console.log(dataDisks);
+
+async function allocateDisks(disk: storage) {
+  const disks = [];
+
+  for await (const dirEntry of Deno.readDir(snapraidPath)) {
+    if (dirEntry.name.includes(disk)) {
+      disks.push(dirEntry.name);
+    }
+    if (disk == "all") {
+      disks.push(dirEntry.name);
+    }
+  }
+  return disks;
+}
 async function randomFile() {
   const randomExtension = Math.floor(Math.random() * extensions.length);
-  const randomPath = Math.floor(Math.random() * paths.length);
-  const randomFilename = paths[randomPath] + prefix +
-    Math.floor(Math.random() * 2 ** 32 + 2 ** 12).toString(32) +
-    extensions[randomExtension];
-
-  console.log(randomFilename);
+  const randomDisk = Math.floor(Math.random() * dataDisks.length);
+  const randomFilename = path.join(
+    snapraidPath,
+    dataDisks[randomDisk],
+    prefix +
+      Math.floor(Math.random() * 2 ** 32 + 2 ** 12).toString(32) +
+      extensions[randomExtension],
+  );
 
   await Deno.writeFile(
     randomFilename,
@@ -39,17 +56,31 @@ function createRandomFiles(amount: number) {
 }
 
 function removeAllFiles() {
-  for (const path of paths) {
+  for (const path of snapraidPath) {
     emptyDir(path);
   }
 }
 
-async function removeSomeFiles() {
-  for (const entry of walkSync(paths[0])) {
-    console.log(entry);
+async function removeSomeRandomFiles(amount: number) {
+  const files = [];
+
+  for await (
+    const entry of walk(snapraidPath, {
+      // maxDepth: 1,
+      includeDirs: false,
+      includeFiles: true,
+      match: [/disk/gi],
+    })
+  ) {
+    files.push(entry.path);
   }
-  for await (const dirEntry of Deno.readDir(paths[0])) {
-    console.log(dirEntry);
+
+  const randomFiles = [
+    ...files.sort(() => Math.random() - Math.random()).slice(0, amount),
+  ];
+
+  for (const file of randomFiles) {
+    Deno.remove(file);
   }
 }
 
@@ -60,5 +91,5 @@ function copySomeFiles() {
 }
 
 // await createRandomFiles(20);
-// removeAllFiles();
-removeSomeFiles();
+removeAllFiles();
+// removeSomeRandomFiles(30);
