@@ -1,7 +1,7 @@
 # FROM hayd/ubuntu-deno:1.10.1
 FROM ubuntu:20.04
 
-ENV DENO_VERSION=1.10.2
+ENV DENO_VERSION=1.10.3
 
 SHELL ["/bin/bash", "-c"]
 
