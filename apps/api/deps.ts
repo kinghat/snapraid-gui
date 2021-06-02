@@ -14,9 +14,5 @@ export type { RouterContext };
 //   Random,
 // } from 'https://deno.land/x/fake_gen@master/dist/main.es.js';
 
-export {
-  emptyDir,
-  walk,
-  // walkSync,
-} from "https://deno.land/std@0.97.0/fs/mod.ts";
+export { emptyDir, walk } from "https://deno.land/std@0.97.0/fs/mod.ts";
 export * as path from "https://deno.land/std@0.97.0/path/mod.ts";

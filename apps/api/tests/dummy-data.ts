@@ -10,10 +10,6 @@ const parityDisks = [...await allocateDisks("parity")];
 
 type storage = "disk" | "parity" | "all";
 
-// console.log(dataDisks);
-// console.log(parityDisks);
-// console.log(allDisks);
-
 async function allocateDisks(disk: storage) {
   const disks = [];
 
@@ -29,17 +25,13 @@ async function allocateDisks(disk: storage) {
 }
 
 async function printFiles() {
-  // const files = [];
-
   for await (
     const entry of walk(snapraidPath, {
-      // maxDepth: 1,
       includeDirs: false,
       includeFiles: true,
       match: [/disk/gi],
     })
   ) {
-    // files.push(entry.path);
     console.log(entry.path);
   }
 }
@@ -82,7 +74,7 @@ async function removeAllFiles() {
       match: [/disk/gi],
     })
   ) {
-    emptyDir(directory.path);
+    await emptyDir(directory.path);
   }
 
   console.log(`removed all files!`);
@@ -120,7 +112,7 @@ function moveSomeFiles() {
 function copySomeFiles() {
 }
 
-// createRandomFiles(20);
+createRandomFiles(50);
 // await removeAllFiles();
 // removeSomeRandomFiles(3);
-await printFiles();
+// await printFiles();
