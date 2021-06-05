@@ -25,18 +25,23 @@ async function allocateDisks(disk: storage) {
 }
 
 async function printFiles() {
+  let count = 0;
+
   for await (
     const entry of walk(snapraidPath, {
       includeDirs: false,
       includeFiles: true,
       match: [/disk/gi],
+      skip: [/.content/gi],
     })
   ) {
+    count++;
     console.log(entry.path);
   }
+  console.log(`${count} files.`);
 }
 
-async function randomFile() {
+async function writeRandomFile() {
   const randomExtension = Math.floor(Math.random() * extensions.length);
   const randomDisk = Math.floor(Math.random() * dataDisks.length);
   const randomFilename = path.join(
@@ -49,7 +54,7 @@ async function randomFile() {
 
   await Deno.writeFile(
     randomFilename,
-    crypto.getRandomValues(new Uint8Array((Math.random() + 0.1) * 2 ** 16)),
+    crypto.getRandomValues(new Uint8Array((Math.random() + 0.1) * 2 ** 14)),
   );
 
   console.log(randomFilename);
@@ -59,8 +64,12 @@ async function createRandomFiles(amount: number) {
   await Promise.allSettled(
     Array(amount)
       .fill(0)
-      .map((_) => randomFile()),
+      .map((_) => writeRandomFile()),
   );
+
+  // for (let number = 0; number < amount; number++) {
+  //   await writeRandomFile();
+  // }
 
   console.log(`created ${amount} files.`);
 }
@@ -89,6 +98,7 @@ async function removeSomeRandomFiles(amount: number) {
       includeDirs: false,
       includeFiles: true,
       match: [/disk/gi],
+      skip: [/.content/gi],
     })
   ) {
     files.push(entry.path);
@@ -112,7 +122,7 @@ function moveSomeFiles() {
 function copySomeFiles() {
 }
 
-createRandomFiles(50);
+// await createRandomFiles(50);
 // await removeAllFiles();
-// removeSomeRandomFiles(3);
-// await printFiles();
+// await removeSomeRandomFiles(13);
+await printFiles();

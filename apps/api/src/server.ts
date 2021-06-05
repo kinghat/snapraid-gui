@@ -14,5 +14,10 @@ app.use(router.routes());
 app.use(commandsRouter.prefix("/api/snapraid").routes());
 app.use(router.allowedMethods());
 
-console.log(`server listening on port: ${PORT}`);
+app.addEventListener("listen", ({ secure, hostname, port }) => {
+  const protocol = secure ? "https://" : "http://";
+  const url = `${protocol}${hostname ?? "localhost"}:${port}`;
+  console.log(`server listening on port: ${url}`);
+});
+
 await app.listen({ port: PORT });
