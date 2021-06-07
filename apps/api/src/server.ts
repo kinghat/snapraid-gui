@@ -1,14 +1,10 @@
-import { Application, Router, RouterContext } from "../deps.ts";
+import { Application } from "../deps.ts";
 import commandsRouter from "./routes/commands.ts";
+import router from "./routes/test.ts";
 // import { posts } from "./data/posts.ts";
 
 const app = new Application();
-const router = new Router();
 const PORT = 8080;
-
-router.get("/api", ({ response }: RouterContext) => {
-  response.body = `Hi! 👋 \n`;
-});
 
 app.use(router.routes());
 app.use(commandsRouter.prefix("/api/snapraid").routes());
