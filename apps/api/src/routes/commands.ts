@@ -1,5 +1,5 @@
 import { Router, RouterContext } from "../../deps.ts";
-import { commands } from "../data/commands.ts";
+import { commands } from "../contorllers/commands.ts";
 
 const router = new Router();
 
