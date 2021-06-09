@@ -35,7 +35,7 @@ RUN cp ./snapraid ${BUILD_DIR}/snapraid
 # FROM hayd/ubuntu-deno:1.10.1
 FROM ubuntu:20.04
 
-ENV DENO_VERSION=1.10.3
+ENV DENO_VERSION=1.11.0
 
 SHELL ["/bin/bash", "-c"]
 
@@ -96,19 +96,19 @@ COPY .devcontainer/config/snapraid.conf /etc
 # The port that your application listens to.
 EXPOSE 8080 
 
-WORKDIR /app
+WORKDIR /workspace
 
 # Prefer not to run as root.
 USER deno
 
 # Cache the dependencies as a layer (the following two steps are re-run only when deps.ts is modified).
 # Ideally fetch deps.ts will download and compile _all_ external files used in main.ts.
-COPY deps.ts .
-RUN deno cache --unstable deps.ts
+# COPY deps.ts .
+# RUN deno cache --unstable deps.ts
 
 # These steps will be re-run upon each file change in your working directory:
-ADD src ./src
+# ADD src ./src
 # Compile the main app so that it doesn't need to be compiled each startup/entry.
-RUN deno cache --unstable src/server.ts
+# RUN deno cache --unstable src/server.ts
 
-CMD ["run", "--allow-net", "--unstable", "src/server.ts"]
+CMD ["run", "--unstable", "--watch", "--allow-net", "src/server.ts"]

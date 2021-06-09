@@ -5,7 +5,7 @@ export const commands = [
   },
   {
     command: "diff",
-    response: "diff there are are changes!",
+    response: "diff there are are changes!!",
   },
   {
     command: "scrub",

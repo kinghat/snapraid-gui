@@ -1,6 +1,6 @@
 import { Application } from "../deps.ts";
 import commandsRouter from "./routes/commands.ts";
-import router from "./routes/test.ts";
+import router from "./routes/temp.ts";
 // import { posts } from "./data/posts.ts";
 
 const app = new Application();
