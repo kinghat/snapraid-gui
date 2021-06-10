@@ -7,7 +7,7 @@
   // },
   "dockerComposeFile": "docker-compose.yml",
   "workspaceFolder": "/workspace",
-  "service": "app",
+  "service": "api",
   // "dockerFile": "Dockerfile",
   // "context": "..",
   // "runArgs": ["--cap-add=SYS_ADMIN", "--cap-add=MKNOD"],

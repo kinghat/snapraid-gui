@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "api",
+      "path": "api"
+    },
+    {
+      "name": "client",
+      "path": "client"
+    },
+    {
+      // Yeoman extension generator
+      "name": "root",
+      "path": "."
+    }
+  ]
+}

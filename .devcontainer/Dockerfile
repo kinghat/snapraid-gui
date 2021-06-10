@@ -41,7 +41,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get -qq update \
   && apt-get upgrade -y -o Dpkg::Options::="--force-confold" \
-  && apt-get -qq install -y smartmontools sudo ca-certificates curl unzip --no-install-recommends \
+  && apt-get -qq install -y smartmontools sudo git ca-certificates curl unzip --no-install-recommends \
   && curl -fsSL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip \
   --output deno.zip \
   && unzip deno.zip \

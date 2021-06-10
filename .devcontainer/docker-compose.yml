@@ -1,14 +1,14 @@
 version: "3.8"
 
 services:
-  app:
+  api:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     ports:
       - 8080:8080
     volumes:
-      - ..:/workspace:cached
+      - ../:/workspace:cached
       - ./config:/config
       - /dev:/dev
     # cap_add:
