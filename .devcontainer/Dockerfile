@@ -96,7 +96,7 @@ COPY .devcontainer/config/snapraid.conf /etc
 # The port that your application listens to.
 EXPOSE 8080 
 
-WORKDIR /workspace
+WORKDIR /api
 
 # Prefer not to run as root.
 USER deno

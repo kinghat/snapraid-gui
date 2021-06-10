@@ -6,7 +6,7 @@
   //   "dockerComposefile": "docker-compose.yml"
   // },
   "dockerComposeFile": "docker-compose.yml",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/api",
   "service": "api",
   // "dockerFile": "Dockerfile",
   // "context": "..",
