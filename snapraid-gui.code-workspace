@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "api",
-      "path": "./api"
+      "path": "api"
     },
     {
       "name": "client",
-      "path": "./client"
+      "path": "client"
     },
     {
       "name": "root",
@@ -14,6 +14,9 @@
     }
   ],
   "settings": {
+    "deno.enable": false,
+    "deno.lint": true,
+    "deno.unstable": true,
     "files.exclude": {
       "api": true,
       "client": true

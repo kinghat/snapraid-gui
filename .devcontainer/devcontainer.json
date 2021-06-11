@@ -21,7 +21,12 @@
   },
 
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": ["denoland.vscode-deno"]
+  "extensions": [
+    "denoland.vscode-deno",
+    "johnsoncodehk.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [8080],
   // "postStartCommand": "deno run --allow-net src/server.ts"
