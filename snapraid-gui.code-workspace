@@ -12,5 +12,11 @@
       "name": "root",
       "path": "."
     }
-  ]
+  ],
+  "settings": {
+    "files.exclude": {
+      "api": true,
+      "client": true
+    }
+  }
 }

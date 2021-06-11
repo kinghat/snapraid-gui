@@ -1,15 +1,16 @@
 version: "3.8"
 
 services:
-  api:
+  workspace:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 8080:8080
+      - 3000:3000
     volumes:
-      - ../api:/api:cached
-      - ./config:/config
+      - ..:/workspace:cached
+      # - ./config:/config
       - /dev:/dev
     # cap_add:
     #   - SYS_ADMIN

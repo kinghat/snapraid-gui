@@ -1,13 +1,14 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/deno
 {
-  "name": "snapraid-api",
+  "name": "snapraid-gui",
   // "build": {
   //   "dockerComposefile": "docker-compose.yml"
   // },
   "dockerComposeFile": "docker-compose.yml",
-  "workspaceFolder": "/api",
-  "service": "api",
+  "workspaceFolder": "/workspace",
+  // "workspaceMount": "source=../api,target=/api,type=bind,consistency=cached",
+  "service": "workspace",
   // "dockerFile": "Dockerfile",
   // "context": "..",
   // "runArgs": ["--cap-add=SYS_ADMIN", "--cap-add=MKNOD"],

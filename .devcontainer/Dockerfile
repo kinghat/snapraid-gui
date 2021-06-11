@@ -69,7 +69,8 @@ RUN mkdir /deno-dir/ \
 ENV DENO_DIR /deno-dir/
 ENV DENO_INSTALL_ROOT /usr/local
 
-COPY .devcontainer/config/_entry.sh /usr/local/bin/docker-entrypoint.sh
+# COPY .devcontainer/config/_entry.sh /usr/local/bin/docker-entrypoint.sh
+COPY ./config/_entry.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
@@ -91,12 +92,13 @@ RUN mkdir -p /mnt/loops \
   && mkfs.ext4 -q /mnt/loops/parity01.img
 
 COPY --from=build /build/snapraid /usr/local/bin/snapraid
-COPY .devcontainer/config/snapraid.conf /etc
+# COPY .devcontainer/config/snapraid.conf /etc
+COPY ./config/snapraid.conf /etc
 
 # The port that your application listens to.
 EXPOSE 8080 
 
-WORKDIR /api
+WORKDIR /workspace
 
 # Prefer not to run as root.
 USER deno
