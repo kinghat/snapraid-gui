@@ -1,4 +1,4 @@
-// deno run --unstable --allow-read --allow-write tests/dummy-data.ts
+// deno run --unstable --allow-read --allow-write stubs/data.ts
 import { emptyDir, path, walk } from "../deps.ts";
 
 const snapraidPath = "/mnt/snapraid";

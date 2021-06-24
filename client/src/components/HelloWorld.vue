@@ -17,7 +17,7 @@
     <code>&lt;script setup&gt;</code>)
   </p>
 
-  <p>See <code>README.md</code> for more information.</p>
+  <p>See <code>README.md!</code> for more information.</p>
 
   <p>
     <a href="https://vitejs.dev/guide/features.html" target="_blank">
@@ -30,7 +30,7 @@
   <button @click="count++">count is: {{ count }}</button>
   <p>
     Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
+    <code>components/HelloWorld.vue</code> to test hot module replacement!
   </p>
 </template>
 

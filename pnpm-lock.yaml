@@ -4,15 +4,15 @@ importers:
 
   .:
     specifiers:
-      pnpm: ^6.7.4
+      pnpm: ^6.7.6
     devDependencies:
-      pnpm: 6.7.4
+      pnpm: 6.7.6
 
   client:
     specifiers:
       '@vitejs/plugin-vue': ^1.2.3
       '@vue/compiler-sfc': ^3.1.1
-      typescript: ^4.3.2
+      typescript: ^4.3.4
       vite: ^2.3.7
       vue: ^3.1.1
       vue-tsc: ^0.1.7
@@ -21,7 +21,7 @@ importers:
     devDependencies:
       '@vitejs/plugin-vue': 1.2.3_@vue+compiler-sfc@3.1.1
       '@vue/compiler-sfc': 3.1.1_vue@3.1.1
-      typescript: 4.3.2
+      typescript: 4.3.4
       vite: 2.3.7
       vue-tsc: 0.1.7_vue@3.1.1
 
@@ -1454,8 +1454,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm/6.7.4:
-    resolution: {integrity: sha512-XdVdy9s2IL84SEWeHGg9nVr5hVF3Nim05UXqtrst1FS5PJdQM+uDazgHIaFMIpPvvWRt5cPYuFj70dOMX6jZCQ==}
+  /pnpm/6.7.6:
+    resolution: {integrity: sha512-VhO6zVIuhVkKXP3kWMZs9W5b3rhcztq524WoAc9OEwjmj7SiKyp0UNltaaLR0VRjFGJPuQOcqDbNkWwzao6dUw==}
     engines: {node: '>=12.17'}
     hasBin: true
     dev: true
@@ -2022,8 +2022,8 @@ packages:
     resolution: {integrity: sha512-AkNlRBbI6K7gk29O92qthNSvc6jjmNQ6isVXoYxkFwPa8D04tIv2SOPd+sd+mNpso4tNdL2gy7nVtrd5yFqvlA==}
     dev: true
 
-  /typescript/4.3.2:
-    resolution: {integrity: sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==}
+  /typescript/4.3.4:
+    resolution: {integrity: sha512-uauPG7XZn9F/mo+7MrsRjyvbxFpzemRjKEZXS4AK83oP2KKOJPvb+9cO/gmnv8arWZvhnjVOXz7B49m1l0e9Ew==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true

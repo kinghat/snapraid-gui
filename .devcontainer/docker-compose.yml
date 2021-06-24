@@ -1,13 +1,15 @@
-version: "3.8"
-
 services:
   workspace:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        UBUNTU_TAG: 20.04
+        VARIANT: 16
+        # USERNAME: vscode
     ports:
       - 8080:8080
-      - 3000:3000
+      - 3333:3000
     volumes:
       - ..:/workspace:cached
       # - ./config:/config
@@ -20,3 +22,5 @@ services:
     privileged: true
     device_cgroup_rules:
       - b 7:* rmw
+    # command: pnpm -r dev
+    # command: sleep infinity

@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "api",
+      "path": "api"
+    }
+  ],
+  "settings": {
+    "deno.enable": false,
+    "deno.lint": true,
+    "deno.unstable": true,
+    "files.exclude": {
+      "api": true,
+      "client": true
+    }
+  }
+}
