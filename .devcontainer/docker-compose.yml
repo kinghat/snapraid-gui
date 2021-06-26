@@ -2,14 +2,14 @@ services:
   workspace:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: 20.04
-        VARIANT: 16
+        # VARIANT: 16
         # USERNAME: vscode
     ports:
       - 8080:8080
-      - 3333:3000
+      # - 3333:3000
     volumes:
       - ..:/workspace:cached
       # - ./config:/config

@@ -11,6 +11,10 @@
     {
       "name": "root",
       "path": "."
+    },
+    {
+      "name": "snapraid-gui @ e9d706a",
+      "uri": "gitlens://e9d706a/home/kinghat/code/snapraid-gui?{\"path\":\"/home/kinghat/code/snapraid-gui\",\"ref\":\"e9d706a431db262a07d314b0d25e992ff8de0e8e\",\"repoPath\":\"/home/kinghat/code/snapraid-gui\"}"
     }
   ],
   "settings": {

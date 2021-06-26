@@ -128,7 +128,7 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 WORKDIR /workspace
 
 
-RUN pnpm install
+# RUN pnpm install
 
 USER ${USERNAME}
 

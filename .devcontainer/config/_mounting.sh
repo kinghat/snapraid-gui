@@ -8,12 +8,4 @@ sudo mount /mnt/loops/parity00.img /mnt/snapraid/parity00
 sudo mount /mnt/loops/parity01.img /mnt/snapraid/parity01
 sudo chown -R deno:deno /mnt/snapraid/disk*
 
-set -e
-
-case "$1" in
-bundle | cache | compile | completions | coverage | doc | eval | fmt | help | info | install | lint | lsp | repl | run | test | types | upgrade)
-  exec deno "$@"
-  ;;
-esac
-
-exec "$@"
+exec docker-entrypoint.sh "$@"
