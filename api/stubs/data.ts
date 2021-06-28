@@ -4,9 +4,9 @@ import { emptyDir, path, walk } from "../deps.ts";
 const snapraidPath = "/mnt/snapraid";
 const prefix = "dummy-";
 const extensions = [".mp3", ".mp4", ".mkv", ".txt"];
-const allDisks = [...await allocateDisks("all")];
-const dataDisks = [...await allocateDisks("disk")];
-const parityDisks = [...await allocateDisks("parity")];
+const allDisks = [...(await allocateDisks("all"))];
+const dataDisks = [...(await allocateDisks("disk"))];
+const parityDisks = [...(await allocateDisks("parity"))];
 
 type storage = "disk" | "parity" | "all";
 
@@ -62,9 +62,7 @@ async function writeRandomFile() {
 
 async function createRandomFiles(amount: number) {
   await Promise.allSettled(
-    Array(amount)
-      .fill(0)
-      .map((_) => writeRandomFile()),
+    Array(amount).fill(0).map((_) => writeRandomFile()),
   );
 
   // for (let number = 0; number < amount; number++) {
@@ -116,11 +114,9 @@ async function removeSomeRandomFiles(amount: number) {
   console.log(`removed ${amount} files!`);
 }
 
-function moveSomeFiles() {
-}
+function moveSomeFiles() {}
 
-function copySomeFiles() {
-}
+function copySomeFiles() {}
 
 // await createRandomFiles(50);
 // await removeAllFiles();
