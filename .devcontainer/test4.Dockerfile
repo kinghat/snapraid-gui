@@ -49,11 +49,14 @@ RUN apt-get -qq update \
   && apt-get -qq clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN useradd --uid 1000 -d /home/deno -ms /bin/bash --user-group deno \
-  && mkdir /deno-dir/ \
-  && chown deno:deno /deno-dir/
+ARG USERNAME=deno
 
-# useradd -u 1000 -d /home/developer -m -k /etc/skel -g 1000 developer
+RUN useradd --uid 1000 -d /home/$USERNAME -ms /bin/bash --user-group $USERNAME \
+  && mkdir /deno-dir/ \
+  && chown $USERNAME:$USERNAME /deno-dir/
+
+RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
+  && chmod 0440 /etc/sudoers.d/$USERNAME
 
 ENV DENO_DIR /deno-dir/
 ENV DENO_INSTALL_ROOT /usr/local
@@ -63,24 +66,7 @@ RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 COPY --from=build /build/snapraid /usr/local/bin/snapraid
 COPY ./config/snapraid.conf /etc
 
-RUN mkdir -p /mnt/loops \
-  && mkdir -p /mnt/snapraid/disk{00..03} \
-  && mkdir -p /mnt/snapraid/parity{00..01} \
-  && dd if=/dev/zero of=/mnt/loops/disk00.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/mnt/loops/disk01.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/mnt/loops/disk02.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/mnt/loops/disk03.img bs=1 count=0 seek=200M \
-  && dd if=/dev/zero of=/mnt/loops/parity00.img bs=1 count=0 seek=250M \
-  && dd if=/dev/zero of=/mnt/loops/parity01.img bs=1 count=0 seek=250M \
-  && mkfs.ext4 -q /mnt/loops/disk00.img \
-  && mkfs.ext4 -q /mnt/loops/disk01.img \
-  && mkfs.ext4 -q /mnt/loops/disk02.img \
-  && mkfs.ext4 -q /mnt/loops/disk03.img \
-  && mkfs.ext4 -q /mnt/loops/parity00.img \
-  && mkfs.ext4 -q /mnt/loops/parity01.img
-
 WORKDIR /workspace
-
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 USER deno

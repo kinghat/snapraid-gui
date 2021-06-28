@@ -6,12 +6,12 @@
     }
   ],
   "settings": {
-    "deno.enable": false,
+    "deno.enable": true,
     "deno.lint": true,
-    "deno.unstable": true,
-    "files.exclude": {
-      "api": true,
-      "client": true
-    }
+    "deno.unstable": true
+    // "files.exclude": {
+    //   "api": true,
+    //   "client": true
+    // }
   }
 }
