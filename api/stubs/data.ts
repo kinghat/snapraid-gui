@@ -88,6 +88,7 @@ async function removeAllFiles() {
 }
 
 async function removeSomeRandomFiles(amount: number) {
+  let count = 0;
   const files = [];
 
   for await (
@@ -109,9 +110,10 @@ async function removeSomeRandomFiles(amount: number) {
   for (const file of randomFiles) {
     Deno.remove(file);
     console.log(file);
+    count++;
   }
 
-  console.log(`removed ${amount} files!`);
+  console.log(`removed ${count} files!`);
 }
 
 function moveSomeFiles() {}

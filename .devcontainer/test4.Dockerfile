@@ -33,7 +33,7 @@ ARG UBUNTU_TAG=20.04
 
 FROM ubuntu:${UBUNTU_TAG}
 
-ENV DENO_VERSION=1.11.2
+ARG DENO_VERSION=1.11.2
 
 RUN apt-get -qq update \
   && apt-get upgrade -y -o Dpkg::Options::="--force-confold" \

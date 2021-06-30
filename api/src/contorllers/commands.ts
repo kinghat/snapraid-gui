@@ -1,5 +1,9 @@
 export const commands = [
   {
+    command: "version",
+    response: "snapraid version is:",
+  },
+  {
     command: "sync",
     response: "sync completed successfully",
   },

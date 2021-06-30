@@ -5,8 +5,10 @@ services:
       dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: 20.04
+        DENO_VERSION: 1.11.3
         # VARIANT: 16
         # USERNAME: vscode
+      # environment:
     ports:
       - 8080:8080
       # - 3333:3000
