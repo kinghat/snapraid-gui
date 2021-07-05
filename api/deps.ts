@@ -8,5 +8,5 @@ import {
 export { Application, Context, Router };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
 export type { RouterContext };
-export { emptyDir, walk } from "https://deno.land/std@0.97.0/fs/mod.ts";
-export * as path from "https://deno.land/std@0.97.0/path/mod.ts";
+export { emptyDir, walk } from "https://deno.land/std@0.100.0/fs/mod.ts";
+export * as path from "https://deno.land/std@0.100.0/path/mod.ts";
