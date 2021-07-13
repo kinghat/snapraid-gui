@@ -8,6 +8,15 @@ const allDisks = [...(await allocateDisks("all"))];
 const dataDisks = [...(await allocateDisks("disk"))];
 const parityDisks = [...(await allocateDisks("parity"))];
 
+interface Disk {
+  name: string;
+  path: string;
+}
+
+interface Parity {  
+  name: 
+}
+
 type storage = "disk" | "parity" | "all";
 
 async function allocateDisks(disk: storage) {
@@ -29,12 +38,6 @@ async function printDataFiles() {
   const dataDiskPaths = dataDisks.map((disk) => path.join(snapraidPath, disk));
 
   for (const diskPath of dataDiskPaths) {
-    // for await (const entry of Deno.readDir(diskPath)) {
-    //   if (entry.isFile) {
-    //     console.log(`${diskPath}/${entry.name}`);
-    //     count++;
-    //   }
-    // }
     for await (
       const entry of walk(diskPath, {
         includeDirs: false,
@@ -129,7 +132,7 @@ function moveSomeFiles() {}
 
 function copySomeFiles() {}
 
-// await createRandomFiles(50);
+// await createRandomFiles(10);
 // await removeAllFiles();
 // await removeSomeRandomFiles(13);
 await printDataFiles();
