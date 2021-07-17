@@ -1,5 +1,6 @@
-// deno run --unstable --allow-read --allow-write stubs/data.ts
-import { emptyDir, path, walk } from "../deps.ts";
+// deno run --unstable --allow-read --allow-write helpers/stubby.ts
+import { emptyDir, parse, path, walk } from "../deps.ts";
+import Denomander from "https://deno.land/x/denomander@0.8.2/mod.ts";
 
 const snapraidPath = "/mnt/snapraid";
 const prefix = "dummy-";
@@ -13,13 +14,28 @@ interface Disk {
   path: string;
 }
 
-interface Parity {  
-  name: 
-}
+// interface Parity {
+//   name:
+// }
 
-type storage = "disk" | "parity" | "all";
+type Storage = "disk" | "parity" | "all";
 
-async function allocateDisks(disk: storage) {
+const stubbyCLI = new Denomander({
+  app_name: "stubby",
+  app_description:
+    "for scaffolding and management of data files to aid in the development of snapraid-gui",
+  app_version: "1.0.0",
+});
+
+stubbyCLI.command("print", "print all the files", printDataFiles);
+stubbyCLI.command(
+  "create [numberOfFiles]",
+  "create random files on the data disks",
+).action(({ numberOfFiles }: number) => createRandomFiles(numberOfFiles));
+
+stubbyCLI.parse(Deno.args);
+
+async function allocateDisks(disk: Storage) {
   const disks = [];
 
   for await (const dirEntry of Deno.readDir(snapraidPath)) {
@@ -74,7 +90,9 @@ async function writeRandomDataFile() {
 
 async function createRandomFiles(amount: number) {
   await Promise.allSettled(
-    Array(amount).fill(0).map((_) => writeRandomDataFile()),
+    Array(amount)
+      .fill(0)
+      .map((_) => writeRandomDataFile()),
   );
 
   // for (let number = 0; number < amount; number++) {
@@ -135,4 +153,4 @@ function copySomeFiles() {}
 // await createRandomFiles(10);
 // await removeAllFiles();
 // await removeSomeRandomFiles(13);
-await printDataFiles();
+// await printDataFiles();
