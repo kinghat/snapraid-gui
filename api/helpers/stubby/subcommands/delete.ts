@@ -1,34 +1,36 @@
-import { Subcommand, walk } from "../../../deps.ts";
+import { emptyDir, walk } from "../../../deps.ts";
+import { Subcommand } from "../deps.ts";
+
+import { AmountOption } from "../options/amount.ts";
+import { SNAPRAID } from "../helpers.ts";
+
+const { mountPath } = SNAPRAID;
+
+class DeleteAmountOption extends AmountOption {
+  public description = "Specify the amount of files to delete.";
+}
 
 export class DeleteSubcommand extends Subcommand {
-  public signature = "copy [source] [destination]";
+  public signature = "delete";
 
-  public description = "Copy a file from one location to another.";
+  public description =
+    "Remove any amount of random data files or remove all data files.";
 
-  public options = [];
+  public options = [DeleteAmountOption];
 
-  public async handle(): Promise<void> {
-    const source = this.getArgumentValue("source"); // matches [source] in the signature
-    const destination = this.getArgumentValue("destination"); // matches [destination] in the signature
-
-    // Show the help if any of the arguments are missing
-    if (!source || !destination) {
+  public handle(): void {
+    const amount = this.getOptionValue("--amount");
+    if (!amount) {
       this.showHelp();
       return;
     }
-
-    try {
-      await Deno.copyFile(source, destination);
-      console.log(`Successfully copied '${source}' to '${destination}'.`);
-    } catch (error) {
-      console.log(error);
-    }
+    removeSomeRandomFiles(Number(amount));
   }
 }
 
 async function removeAllFiles() {
   for await (
-    const directory of walk(snapraidPath, {
+    const directory of walk(mountPath, {
       maxDepth: 1,
       includeDirs: true,
       includeFiles: false,
@@ -46,7 +48,7 @@ async function removeSomeRandomFiles(amount: number) {
   const files = [];
 
   for await (
-    const entry of walk(snapraidPath, {
+    const entry of walk(mountPath, {
       // maxDepth: 1,
       includeDirs: false,
       includeFiles: true,
@@ -55,6 +57,7 @@ async function removeSomeRandomFiles(amount: number) {
     })
   ) {
     files.push(entry.path);
+    console.log(entry.name);
   }
 
   const randomFiles = [

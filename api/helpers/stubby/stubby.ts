@@ -4,7 +4,7 @@
 import { Line } from "./deps.ts";
 
 import { CreateSubcommand } from "./subcommands/create.ts";
-// import { DeleteSubcommand } from "./subcommands/delete.ts";
+import { DeleteSubcommand } from "./subcommands/delete.ts";
 import { PrintSubcommand } from "./subcommands/print.ts";
 // import { MoveSubcommand } from "./subcommands/move.ts";
 
@@ -19,7 +19,7 @@ const stubby = new Line({
   subcommands: [
     PrintSubcommand,
     CreateSubcommand,
-    // DeleteSubcommand,
+    DeleteSubcommand,
     // MoveSubcommand,
   ],
 });
