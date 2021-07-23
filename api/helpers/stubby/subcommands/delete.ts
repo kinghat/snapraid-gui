@@ -1,14 +1,11 @@
 import { emptyDir, walk } from "../../../deps.ts";
 import { Subcommand } from "../deps.ts";
 
-import { AmountOption } from "../options/amount.ts";
+import { DeleteAmountOption } from "../options/amount.ts";
 import { SNAPRAID } from "../helpers.ts";
 
 const { mountPath } = SNAPRAID;
-
-class DeleteAmountOption extends AmountOption {
-  public description = "Specify the amount of files to delete.";
-}
+type amountOption = "all" | number;
 
 export class DeleteSubcommand extends Subcommand {
   public signature = "delete";
@@ -19,16 +16,36 @@ export class DeleteSubcommand extends Subcommand {
   public options = [DeleteAmountOption];
 
   public handle(): void {
-    const amount = this.getOptionValue("--amount");
-    if (!amount) {
-      this.showHelp();
+    const amountValue = this.getOptionValue("--amount");
+    const amountNumber = Number(amountValue);
+    // // return if amountValue case: null ||
+    // if (!amountValue || amountNumber === NaN) {
+    //   this.showHelp();
+
+    //   return;
+    // }
+
+    if (amountValue === "all") {
+      removeAllDataFiles();
+
       return;
     }
-    removeSomeRandomFiles(Number(amount));
+
+    if (amountNumber) {
+      removeSomeRandomDataFiles(amountNumber);
+
+      return;
+    }
+
+    console.log(
+      `The passed value: "${amountValue}" is not recognized.\n FIX IT OR IM GETTING A LAWYER!\n`,
+    );
+
+    this.showHelp();
   }
 }
 
-async function removeAllFiles() {
+async function removeAllDataFiles() {
   for await (
     const directory of walk(mountPath, {
       maxDepth: 1,
@@ -43,21 +60,21 @@ async function removeAllFiles() {
   console.log(`removed all files!`);
 }
 
-async function removeSomeRandomFiles(amount: number) {
+async function removeSomeRandomDataFiles(amount: number) {
   let count = 0;
   const files = [];
 
   for await (
     const entry of walk(mountPath, {
-      // maxDepth: 1,
       includeDirs: false,
       includeFiles: true,
       match: [/disk/gi],
-      skip: [/.content/gi],
+      skip: [/(content)|(parity)/gi],
     })
   ) {
     files.push(entry.path);
-    console.log(entry.name);
+
+    // console.log(entry.path);
   }
 
   const randomFiles = [
@@ -66,7 +83,9 @@ async function removeSomeRandomFiles(amount: number) {
 
   for (const file of randomFiles) {
     Deno.remove(file);
-    console.log(file);
+
+    // console.log(file);
+
     count++;
   }
 

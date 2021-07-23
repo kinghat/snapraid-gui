@@ -4,6 +4,8 @@ import { Subcommand } from "../deps.ts";
 import { LongOption } from "../options/print-long.ts";
 import { SNAPRAID } from "../helpers.ts";
 
+const { mountPath } = SNAPRAID;
+
 export class PrintSubcommand extends Subcommand {
   public signature = "print";
 
@@ -12,6 +14,7 @@ export class PrintSubcommand extends Subcommand {
   public options = [LongOption];
 
   public handle(): void {
+    // must have a value passed to --long option to not null
     const long = this.getOptionValue("--long");
 
     printDataFiles(long).catch((error) => console.log(error));
@@ -19,23 +22,23 @@ export class PrintSubcommand extends Subcommand {
 }
 
 async function printDataFiles(output: string | null) {
-  const { dataDisks } = SNAPRAID;
   const files = [];
   let count = 0;
 
-  for (const disk of dataDisks) {
-    for await (
-      const entry of walk(disk.path, {
-        includeDirs: false,
-        includeFiles: true,
-        match: [/disk/gi],
-        skip: [/.content/gi],
-      })
-    ) {
-      count++;
-      if (output) files.push(entry.name);
-    }
+  for await (
+    const entry of walk(mountPath, {
+      includeDirs: false,
+      includeFiles: true,
+      match: [/disk/gi],
+      skip: [/(content)|(parity)/gi],
+    })
+  ) {
+    count++;
+
+    if (output) files.push(entry.name);
   }
+
   if (output) console.log(files);
+
   console.log(`${count} files.`);
 }

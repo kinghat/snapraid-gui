@@ -5,7 +5,7 @@ services:
       dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: 20.04
-        DENO_VERSION: 1.12.0
+        DENO_VERSION: 1.12.1
         # VARIANT: 16
         # USERNAME: vscode
       # environment:

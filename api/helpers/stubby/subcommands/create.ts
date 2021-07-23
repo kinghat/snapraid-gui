@@ -1,7 +1,7 @@
 import { path } from "../../../deps.ts";
 import { Subcommand } from "../deps.ts";
 
-import { AmountOption } from "../options/amount.ts";
+import { CreateAmountOption } from "../options/amount.ts";
 import { SNAPRAID } from "../helpers.ts";
 
 const { dataDisks } = SNAPRAID;
@@ -13,32 +13,21 @@ export class CreateSubcommand extends Subcommand {
 
   public description = "Create random files, randomly across data disks.";
 
-  public options = [AmountOption];
+  public options = [CreateAmountOption];
 
-  // public async handle(): Promise<void> {
-  //   const source = this.getArgumentValue("source"); // matches [source] in the signature
-  //   const destination = this.getArgumentValue("destination"); // matches [destination] in the signature
-
-  //   // Show the help if any of the arguments are missing
-  //   if (!source || !destination) {
-  //     this.showHelp();
-  //     return;
-  //   }
-
-  //   try {
-  //     await Deno.copyFile(source, destination);
-  //     console.log(`Successfully copied '${source}' to '${destination}'.`);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  public handle(): void {
+  public async handle(): Promise<void> {
     const amount = this.getOptionValue("--amount");
+
     if (amount) {
-      createRandomFiles(Number(amount));
+      await createRandomDataFiles(Number(amount));
+
+      console.log(`created ${amount} files.`);
+
       return;
     }
-    createRandomFiles();
+
+    await createRandomDataFiles();
+
     console.log(`created the default of 10 files.`);
   }
 }
@@ -57,20 +46,12 @@ async function writeRandomDataFile() {
     randomFilename,
     crypto.getRandomValues(new Uint8Array((Math.random() + 0.1) * 2 ** 14)),
   );
-
-  console.log(randomFilename);
 }
 
-async function createRandomFiles(amount = 10) {
+async function createRandomDataFiles(amount = 10) {
   await Promise.allSettled(
     Array(amount)
       .fill(0)
       .map((_) => writeRandomDataFile()),
   );
-
-  // for (let number = 0; number < amount; number++) {
-  //   await writeRandomFile();
-  // }
-
-  console.log(`created ${amount} files.`);
 }
