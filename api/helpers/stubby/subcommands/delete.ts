@@ -5,7 +5,6 @@ import { DeleteAmountOption } from "../options/amount.ts";
 import { SNAPRAID } from "../helpers.ts";
 
 const { mountPath } = SNAPRAID;
-type amountOption = "all" | number;
 
 export class DeleteSubcommand extends Subcommand {
   public signature = "delete";
@@ -17,22 +16,18 @@ export class DeleteSubcommand extends Subcommand {
 
   public handle(): void {
     const amountValue = this.getOptionValue("--amount");
-    const amountNumber = Number(amountValue);
-    // // return if amountValue case: null ||
-    // if (!amountValue || amountNumber === NaN) {
-    //   this.showHelp();
-
-    //   return;
-    // }
+    const amountAsNumber = Number(amountValue);
 
     if (amountValue === "all") {
-      removeAllDataFiles();
+      removeAllDataFiles().catch((error) => console.log(error));
 
       return;
     }
 
-    if (amountNumber) {
-      removeSomeRandomDataFiles(amountNumber);
+    if (amountAsNumber) {
+      removeSomeRandomDataFiles(amountAsNumber).catch((error) =>
+        console.log(error)
+      );
 
       return;
     }
@@ -80,6 +75,8 @@ async function removeSomeRandomDataFiles(amount: number) {
   const randomFiles = [
     ...files.sort(() => Math.random() - Math.random()).slice(0, amount),
   ];
+
+  console.log(randomFiles);
 
   for (const file of randomFiles) {
     Deno.remove(file);

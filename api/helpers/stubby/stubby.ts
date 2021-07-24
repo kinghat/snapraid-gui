@@ -6,7 +6,7 @@ import { Line } from "./deps.ts";
 import { CreateSubcommand } from "./subcommands/create.ts";
 import { DeleteSubcommand } from "./subcommands/delete.ts";
 import { PrintSubcommand } from "./subcommands/print.ts";
-// import { MoveSubcommand } from "./subcommands/move.ts";
+import { MoveSubcommand } from "./subcommands/move.ts";
 
 // import Denomander from "https://deno.land/x/denomander@0.8.2/mod.ts";
 
@@ -20,7 +20,7 @@ const stubby = new Line({
     PrintSubcommand,
     CreateSubcommand,
     DeleteSubcommand,
-    // MoveSubcommand,
+    MoveSubcommand,
   ],
 });
 

@@ -23,6 +23,7 @@
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
     "denoland.vscode-deno",
+    "streetsidesoftware.code-spell-checker"
     // "johnsoncodehk.volar",
     // "dbaeumer.vscode-eslint",
     // "esbenp.prettier-vscode"

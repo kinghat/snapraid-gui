@@ -5,9 +5,13 @@ class AmountOption extends SubcommandOption {
 }
 
 export class CreateAmountOption extends AmountOption {
-  public description = "Specify the amount of files to create.";
+  public description = "Specify the amount of random data files to create.";
 }
 
 export class DeleteAmountOption extends AmountOption {
-  public description = "Specify the amount of files to delete.";
+  public description = "Specify the amount of random data files to delete.";
+}
+
+export class MoveAmountOption extends AmountOption {
+  public description = "Specify the amount of random data files to move.";
 }

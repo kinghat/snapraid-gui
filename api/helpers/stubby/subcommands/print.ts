@@ -35,7 +35,7 @@ async function printDataFiles(output: string | null) {
   ) {
     count++;
 
-    if (output) files.push(entry.name);
+    if (output) files.push(entry.path);
   }
 
   if (output) console.log(files);

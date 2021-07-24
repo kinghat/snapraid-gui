@@ -19,14 +19,16 @@ export class CreateSubcommand extends Subcommand {
     const amount = this.getOptionValue("--amount");
 
     if (amount) {
-      await createRandomDataFiles(Number(amount));
+      await createRandomDataFiles(Number(amount)).catch((error) =>
+        console.log(error)
+      );
 
       console.log(`created ${amount} files.`);
 
       return;
     }
 
-    await createRandomDataFiles();
+    await createRandomDataFiles().catch((error) => console.log(error));
 
     console.log(`created the default of 10 files.`);
   }
