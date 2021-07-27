@@ -15,8 +15,8 @@
   ],
   "settings": {
     "deno.enable": false,
-    "deno.lint": false,
-    "deno.unstable": false,
+    "deno.lint": true,
+    "deno.unstable": true,
     "files.exclude": {
       "api": true,
       "client": true

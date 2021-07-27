@@ -1,4 +1,4 @@
-import { move, walk } from "../../../deps.ts";
+import { move, path, walk } from "../../../deps.ts";
 import { Subcommand } from "../deps.ts";
 
 import { MoveAmountOption } from "../options/amount.ts";
@@ -31,7 +31,7 @@ async function moveSomeRandomDataFiles(amount = 10) {
   // let count = 0;
   // const filesAndDirectories = [];
   const files = [];
-  const directories = [];
+  const directories: string[] = [];
 
   for await (
     const entry of walk(mountPath, {
@@ -41,11 +41,9 @@ async function moveSomeRandomDataFiles(amount = 10) {
       skip: [/(content)|(parity)|(lost)/gi],
     })
   ) {
-    // filesAndDirectories.push(entry);
     if (entry.isDirectory) directories.push(entry.path);
-    if (entry.isFile) files.push(entry.path);
 
-    // console.log(entry);
+    if (entry.isFile) files.push(entry.path);
   }
 
   if (amount > files.length) {
@@ -55,26 +53,28 @@ async function moveSomeRandomDataFiles(amount = 10) {
     return;
   }
 
-  // console.log(files);
-  // console.log(directories);
-
   const randomFiles = [
     ...files.sort(() => Math.random() - Math.random()).slice(0, amount),
   ];
-  const randomizedDirectories = [
-    ...directories.sort(() => Math.random() - Math.random()),
-  ];
+  // const randomizedDirectories = [
+  //   ...directories.sort(() => Math.random() - Math.random()),
+  // ];
 
-  console.log(randomFiles);
-  console.log(randomizedDirectories);
+  function pickRandomDirectory() {
+    return directories[(Math.floor(Math.random() * directories.length))];
+  }
 
-  // for (const file of randomFiles) {
-  //   Deno.remove(file);
+  for await (const file of randomFiles) {
+    let randomDirectory = pickRandomDirectory();
 
-  //   // console.log(file);
+    while (path.dirname(file).includes(randomDirectory)) {
+      randomDirectory = pickRandomDirectory();
+    }
 
-  //   count++;
-  // }
+    move(file, `${randomDirectory}/${path.basename(file)}-copy`);
 
-  // console.log(`removed ${count} files!`);
+    console.log(
+      `moved: ${file} to ${randomDirectory}/${path.basename(file)}-copy`,
+    );
+  }
 }
