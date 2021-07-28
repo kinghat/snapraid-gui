@@ -15,9 +15,9 @@ export {
   emptyDir,
   move,
   walk,
-} from "https://deno.land/std@0.102.0/fs/mod.ts";
-export * as path from "https://deno.land/std@0.102.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.102.0/flags/mod.ts";
+} from "https://deno.land/std@0.103.0/fs/mod.ts";
+export * as path from "https://deno.land/std@0.103.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.103.0/flags/mod.ts";
 // export {
 //   Line,
 //   Option,

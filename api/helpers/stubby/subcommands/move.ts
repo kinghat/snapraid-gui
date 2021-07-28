@@ -1,4 +1,4 @@
-import { move, path, walk } from "../../../deps.ts";
+import { copy, path, walk } from "../../../deps.ts";
 import { Subcommand } from "../deps.ts";
 
 import { MoveAmountOption } from "../options/amount.ts";
@@ -15,23 +15,30 @@ export class MoveSubcommand extends Subcommand {
   public options = [MoveAmountOption];
 
   public async handle(): Promise<void> {
-    const amountValue = this.getArgumentValue("--amount");
+    const amountValue = this.getOptionValue("--amount");
     const amountAsNumber = Number(amountValue);
 
-    // if (!amountAsNumber) {
-    //   this.showHelp();
-    //   return;
-    // }
+    if (amountValue === null) {
+      moveSomeRandomDataFiles();
 
-    await moveSomeRandomDataFiles();
+      return;
+    }
+
+    if (isNaN(amountAsNumber)) {
+      this.showHelp();
+
+      return;
+    }
+
+    await moveSomeRandomDataFiles(amountAsNumber);
   }
 }
 
 async function moveSomeRandomDataFiles(amount = 10) {
-  // let count = 0;
-  // const filesAndDirectories = [];
+  let count = 0;
   const files = [];
-  const directories: string[] = [];
+  // const directories: string[] = [];
+  const directories = [];
 
   for await (
     const entry of walk(mountPath, {
@@ -48,33 +55,38 @@ async function moveSomeRandomDataFiles(amount = 10) {
 
   if (amount > files.length) {
     console.log(
-      `Specified files(${amount}) exceeds the amount of data files that exist. Rerun with an appropriate value.`,
+      `Specified amount of files(${amount}) exceeds the amount of data files that exist.\nRerun with an appropriate value.`,
     );
+
     return;
   }
 
   const randomFiles = [
     ...files.sort(() => Math.random() - Math.random()).slice(0, amount),
   ];
-  // const randomizedDirectories = [
-  //   ...directories.sort(() => Math.random() - Math.random()),
-  // ];
 
   function pickRandomDirectory() {
     return directories[(Math.floor(Math.random() * directories.length))];
   }
 
-  for await (const file of randomFiles) {
+  for (const file of randomFiles) {
     let randomDirectory = pickRandomDirectory();
 
     while (path.dirname(file).includes(randomDirectory)) {
       randomDirectory = pickRandomDirectory();
     }
 
-    move(file, `${randomDirectory}/${path.basename(file)}-copy`);
+    // std/fs/move currently doesnt move across mounts/devices. substituted copy and Deno.remove until fixed in deno:
+    // https://github.com/denoland/deno_std/issues/1070
 
-    console.log(
-      `moved: ${file} to ${randomDirectory}/${path.basename(file)}-copy`,
-    );
+    // move(file, `${randomDirectory}/${path.basename(file)}`);
+
+    await copy(file, `${randomDirectory}/${path.basename(file)}`);
+
+    await Deno.remove(file);
+
+    count++;
   }
+
+  console.log(`moved ${count} files.`);
 }

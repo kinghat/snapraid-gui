@@ -33,7 +33,7 @@ export class DeleteSubcommand extends Subcommand {
     }
 
     console.log(
-      `The passed value: "${amountValue}" is not recognized.\n FIX IT OR IM GETTING A LAWYER!\n`,
+      `The passed value: "${amountValue}" is not recognized.\nFIX IT OR IM GETTING A LAWYER!\n`,
     );
 
     this.showHelp();
