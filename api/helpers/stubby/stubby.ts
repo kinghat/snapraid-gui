@@ -1,7 +1,7 @@
 // how to run or install:
 // deno run --unstable --allow-read --allow-write helpers/stubby/stubby.ts
 // deno install --allow-read --allow-write --name stubby helpers/stubby/stubby.ts
-// import { emptyDir, parse, path, walk } from "./deps.ts";
+
 import { Line } from "./deps.ts";
 
 import { CreateSubcommand } from "./subcommands/create.ts";
@@ -26,23 +26,3 @@ const stubby = new Line({
 });
 
 stubby.run();
-
-// await createRandomFiles(10);
-// await removeAllFiles();
-// await removeSomeRandomFiles(13);
-// await printDataFiles();
-
-// const stubbyCLI = new Denomander({
-//   app_name: "stubby",
-//   app_description:
-//     "for scaffolding and management of data files to aid in the development of snapraid-gui",
-//   app_version: "1.0.0",
-// });
-
-// stubbyCLI.command("print", "print all the files", printDataFiles);
-// stubbyCLI.command(
-//   "create [numberOfFiles]",
-//   "create random files on the data disks",
-// ).action(({ numberOfFiles }: number) => createRandomFiles(numberOfFiles));
-
-// stubbyCLI.parse(Deno.args);
