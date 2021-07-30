@@ -1,5 +1,6 @@
-// how to run:
+// how to run or install:
 // deno run --unstable --allow-read --allow-write helpers/stubby/stubby.ts
+// deno install --allow-read --allow-write --name stubby helpers/stubby/stubby.ts
 // import { emptyDir, parse, path, walk } from "./deps.ts";
 import { Line } from "./deps.ts";
 
@@ -8,8 +9,6 @@ import { DeleteSubcommand } from "./subcommands/delete.ts";
 import { PrintSubcommand } from "./subcommands/print.ts";
 import { MoveSubcommand } from "./subcommands/move.ts";
 import { CopySubcommand } from "./subcommands/copy.ts";
-
-// import Denomander from "https://deno.land/x/denomander@0.8.2/mod.ts";
 
 const stubby = new Line({
   command: "stubby",

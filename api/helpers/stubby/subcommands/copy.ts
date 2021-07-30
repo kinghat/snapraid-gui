@@ -35,8 +35,6 @@ export class CopySubcommand extends Subcommand {
 }
 
 async function copySomeRandomDataFiles(amount = 10) {
-  console.log(amount);
-
   let count = 0;
   const filePaths: string[] = [];
   const diskPaths: string[] = [];
@@ -77,7 +75,7 @@ async function copySomeRandomDataFiles(amount = 10) {
   //   return diskPaths[Math.floor(Math.random() * diskPaths.length)];
   // }
 
-  async function writableFilePath(filePath: string) {
+  async function getWritableDiskPath(filePath: string) {
     const validatedDiskPaths = [];
 
     for (const diskPath of randomDiskPaths) {
@@ -96,7 +94,7 @@ async function copySomeRandomDataFiles(amount = 10) {
   }
 
   for (const filePath of randomFilePaths) {
-    const diskPath = await writableFilePath(filePath);
+    const diskPath = await getWritableDiskPath(filePath);
 
     if (diskPath) {
       await copy(filePath, `${diskPath}/${path.basename(filePath)}`);
