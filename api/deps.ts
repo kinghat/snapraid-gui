@@ -13,6 +13,7 @@ export type { RouterContext };
 export {
   copy,
   emptyDir,
+  exists,
   move,
   walk,
 } from "https://deno.land/std@0.103.0/fs/mod.ts";

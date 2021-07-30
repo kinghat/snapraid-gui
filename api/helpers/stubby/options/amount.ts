@@ -15,3 +15,7 @@ export class DeleteAmountOption extends AmountOption {
 export class MoveAmountOption extends AmountOption {
   public description = "Specify the amount of random data files to move.";
 }
+
+export class CopyAmountOption extends AmountOption {
+  public description = "Specify the amount of random data files to move.";
+}

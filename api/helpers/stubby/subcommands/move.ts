@@ -36,9 +36,8 @@ export class MoveSubcommand extends Subcommand {
 
 async function moveSomeRandomDataFiles(amount = 10) {
   let count = 0;
-  const files = [];
-  // const directories: string[] = [];
-  const directories = [];
+  const files: string[] = [];
+  const directories: string[] = [];
 
   for await (
     const entry of walk(mountPath, {
@@ -66,7 +65,7 @@ async function moveSomeRandomDataFiles(amount = 10) {
   ];
 
   function pickRandomDirectory() {
-    return directories[(Math.floor(Math.random() * directories.length))];
+    return directories[Math.floor(Math.random() * directories.length)];
   }
 
   for (const file of randomFiles) {
