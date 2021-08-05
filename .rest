@@ -1,3 +1,8 @@
 
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
 
-GET http://localhost:8080/api/
+GET http://{{host}}/api
+###
+GET http://{{host}}/api/snapraid

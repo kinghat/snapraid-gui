@@ -69,5 +69,7 @@ COPY ./config/snapraid.conf /etc
 WORKDIR /workspace
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-USER deno
+
+USER $USERNAME
+
 CMD ["run", "--unstable", "--watch", "--allow-net", "api/src/server.ts"]

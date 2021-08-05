@@ -1,6 +1,6 @@
 // how to run or install:
 // deno run --unstable --allow-read --allow-write helpers/stubby/stubby.ts
-// deno install --allow-read --allow-write --name stubby helpers/stubby/stubby.ts
+// deno install --unstable --allow-read --allow-write --name stubby helpers/stubby/stubby.ts
 
 import { Line } from "./deps.ts";
 
