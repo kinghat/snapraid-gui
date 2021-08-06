@@ -32,6 +32,8 @@
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [8080],
   "postAttachCommand": "sudo deno install --unstable --allow-read --allow-write --name stubby api/helpers/stubby/stubby.ts"
+  // "postCreateCommand": "sudo deno install --unstable --allow-read --allow-write --name stubby api/helpers/stubby/stubby.ts"
+  // "postStartCommand": ["sudo" deno install --unstable --allow-read --allow-write --name stubby api/helpers/stubby/stubby.ts"]
   // "remoteUser": "deno"
   // "containerUser": "deno",
   // "updateRemoteUserUID": true

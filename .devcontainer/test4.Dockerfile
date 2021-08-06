@@ -70,6 +70,8 @@ WORKDIR /workspace
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
+# RUN deno install --unstable --allow-read --allow-write --name stubby /workspace/api/helpers/stubby/stubby.ts
+
 USER $USERNAME
 
 CMD ["run", "--unstable", "--watch", "--allow-net", "api/src/server.ts"]
