@@ -17,6 +17,7 @@
     "deno.enable": false,
     "deno.lint": true,
     "deno.unstable": true,
+    "deno.path": "/home/kinghat/.deno/bin/deno",
     "files.exclude": {
       "api": true,
       "client": true

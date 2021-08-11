@@ -1,13 +1,13 @@
 import { Router, RouterContext } from "../../deps.ts";
-import { commands } from "../controllers/commands.ts";
+import snapraidController from "../controllers/snapraid.ts";
 
 const router = new Router();
 
 router.get("/", ({ response }: RouterContext) => {
-  response.body = commands[1];
+  response.body = snapraidController.getSmart;
 });
 router.get("/", ({ response }: RouterContext) => {
-  response.body = commands[0];
+  response.body = snapraidController.getDiff;
 });
 
 export default router;
