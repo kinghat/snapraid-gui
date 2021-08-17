@@ -17,7 +17,7 @@
 
 <style>
   body {
-    background-color: #111;
+    background-color: #bababa;
   }
 
   #app {
