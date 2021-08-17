@@ -6,7 +6,6 @@
 //   pool   Create or update the virtual view of the array
 //   check  Check the array
 //   fix    Fix the array
-//   touch  Sets arbitrarily the sub-second time-stamp of all the files that have it at zero.
 
 async function subProcess(command: string[]) {
   const process = Deno.run({
@@ -22,40 +21,123 @@ async function subProcess(command: string[]) {
 
   process.close();
 
-  console.log(`command: `, command);
-
-  console.log(`status: `, status);
-  console.log(`stderr: `, stderr);
-  console.log(`stdout: `, stdout);
-  if (status.code === 0) {
-    const decodedOutput = new TextDecoder().decode(stdout);
-    // console.log(decodedOutput);
-
-    return decodedOutput;
-  } else {
-    const errorString = new TextDecoder().decode(stderr);
-
-    return errorString;
-  }
+  return {
+    status,
+    stdOut: new TextDecoder().decode(stdout),
+    stdErr: new TextDecoder().decode(stderr),
+  };
 }
 
 //status - Print the status of the array
 export async function getStatus() {
-  return await subProcess(["sudo", "snapraid", "status"]);
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "status",
+  ]);
+
+  console.log(
+    `cmd: status\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
 }
+
 //smart - SMART attributes of the array
 export async function getSmart() {
-  return await subProcess(["sudo", "snapraid", "smart"]);
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "smart",
+  ]);
+
+  console.log(
+    `cmd: smart\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
 }
+
 //diff - Show the changes that needs to be synchronized
 export async function getDiff() {
-  return await subProcess(["sudo", "snapraid", "diff"]);
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "diff",
+  ]);
+
+  console.log(
+    `cmd: diff\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
 }
+
 //sync - Synchronize the state of the array
 export async function startSync() {
-  return await subProcess(["sudo", "snapraid", "sync"]);
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "sync",
+  ]);
+
+  console.log(
+    `cmd: sync\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
 }
+
 //scrub - Scrub the array
 export async function startScrub() {
-  return await subProcess(["sudo", "snapraid", "scrub"]);
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "scrub",
+  ]);
+
+  console.log(
+    `cmd: scrub\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
+}
+
+//   touch  Sets arbitrarily the sub-second time-stamp of all the files that have it at zero.
+export async function startTouch() {
+  const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
+    "sudo",
+    "snapraid",
+    "touch",
+  ]);
+
+  console.log(
+    `cmd: touch\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
+  );
+
+  if (exitCode === 0) {
+    return { exitCode, stdOut, stdErr };
+  } else {
+    return { exitCode, stdOut, stdErr };
+  }
 }

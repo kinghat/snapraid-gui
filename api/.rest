@@ -11,6 +11,8 @@ GET http://{{host}}/api/snapraid/smart
 ###
 GET http://{{host}}/api/snapraid/diff
 ###
-GET http://{{host}}/api/snapraid/scrub
+PATCH http://{{host}}/api/snapraid/scrub
 ###
-GET http://{{host}}/api/snapraid/sync
+PATCH http://{{host}}/api/snapraid/sync
+###
+PATCH http://{{host}}/api/snapraid/touch
