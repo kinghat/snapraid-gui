@@ -13,6 +13,6 @@
   "author": "kinghat",
   "license": "MIT",
   "devDependencies": {
-    "pnpm": "^6.12.1"
+    "pnpm": "^6.13.0"
   }
 }
