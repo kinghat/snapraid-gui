@@ -4,8 +4,7 @@
   "private": true,
   "description": "a frontend to your snapraid world",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npx only-allow pnpm"
   },
   "keywords": [
     "snapraid"
