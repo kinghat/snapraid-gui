@@ -8,7 +8,10 @@
   "settings": {
     "deno.enable": true,
     "deno.lint": true,
-    "deno.unstable": true
+    "deno.unstable": true,
+    "deno.suggest.imports.hosts": {
+      "https://deno.land": true
+    }
     // "files.exclude": {
     //   "api": true,
     //   "client": true
