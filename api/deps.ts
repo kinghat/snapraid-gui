@@ -10,6 +10,7 @@ import {
 export { Application, Context, Router };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
 export type { RouterContext };
+export { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 export {
   copy,
   emptyDir,

@@ -2,9 +2,9 @@
   "name": "snapraid-gui",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "client:dev": "vite",
+    "client:build": "vue-tsc --noEmit && vite build",
+    "client:serve": "vite preview"
   },
   "dependencies": {
     "@vueuse/core": "^6.0.0",
