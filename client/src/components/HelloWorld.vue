@@ -1,8 +1,9 @@
 <script setup lang="ts">
-  import { reactive, ref } from "vue";
+  import { reactive, Ref, ref } from "vue";
   import { createFetch } from "@vueuse/core";
 
   const baseRoute = `http://localhost:8080/api/snapraid`;
+  // let endRoute = "";
   let endRoute = ref("");
   enum Routes {
     Status = "status",
@@ -11,12 +12,12 @@
     Smart = "smart",
     Scrub = "scrub",
   }
-  const useSnapraidFetch = createFetch({
-    baseUrl: baseRoute,
-    options: {
-      immediate: false,
-    },
-  });
+  // const useSnapraidFetch = createFetch({
+  //   baseUrl: baseRoute,
+  //   options: {
+  //     immediate: false,
+  //   },
+  // });
   const {
     data,
     error,
@@ -43,23 +44,26 @@
 
     execute();
   }
-  // function useSnapraidFetch(route: string) {
-  //   const fetchFactory = createFetch({
-  //     baseUrl: baseRoute,
-  //     options: {
-  //       immediate: false,
-  //     },
-  //   });
-  //   return fetchFactory(route);
-  // }
+  function useSnapraidFetch(route: Ref<string>) {
+    const fetchFactory = createFetch({
+      baseUrl: baseRoute,
+      options: {
+        immediate: false,
+      },
+    });
+    console.log("route.value: ", route.value);
+
+    if (route.value === "sync") return fetchFactory(route.value).put();
+    return fetchFactory(route);
+  }
   // { statusCode, error, data, execute } = useSnapraidFetch(Routes.Status);
 </script>
 <template>
   <h1>Snapraid GUI</h1>
   <button @click="executeFetch(Routes.Status)">get status</button>
   <button @click="executeFetch(Routes.Smart)">get smart</button>
-  <button @click="executeFetch(Routes.Sync)">start sync</button>
   <button @click="executeFetch(Routes.Diff)">get diff</button>
+  <button @click="executeFetch(Routes.Sync)">start sync</button>
   <button @click="executeFetch(Routes.Scrub)">start scrub</button>
   <pre v-if="isFinished">
     {{ text }}

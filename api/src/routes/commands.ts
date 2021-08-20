@@ -21,7 +21,7 @@ router.get("/diff", async ({ response }: RouterContext) => {
 router.patch("/scrub", async ({ response }: RouterContext) => {
   response.body = { route: "scrub", ...await startScrub() };
 });
-router.patch("/sync", async ({ response }: RouterContext) => {
+router.put("/sync", async ({ response }: RouterContext) => {
   response.body = { route: "sync", ...await startSync() };
 });
 router.patch("/touch", async ({ response }: RouterContext) => {
