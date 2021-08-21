@@ -18,13 +18,13 @@ router.get("/smart", async ({ response }: RouterContext) => {
 router.get("/diff", async ({ response }: RouterContext) => {
   response.body = { route: "diff", ...await getDiff() };
 });
-router.patch("/scrub", async ({ response }: RouterContext) => {
+router.get("/scrub", async ({ response }: RouterContext) => {
   response.body = { route: "scrub", ...await startScrub() };
 });
-router.put("/sync", async ({ response }: RouterContext) => {
+router.get("/sync", async ({ response }: RouterContext) => {
   response.body = { route: "sync", ...await startSync() };
 });
-router.patch("/touch", async ({ response }: RouterContext) => {
+router.get("/touch", async ({ response }: RouterContext) => {
   response.body = { route: "touch", ...await startTouch() };
 });
 

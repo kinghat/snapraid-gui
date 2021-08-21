@@ -2,9 +2,6 @@
   import { reactive, Ref, ref } from "vue";
   import { createFetch } from "@vueuse/core";
 
-  const baseRoute = `http://localhost:8080/api/snapraid`;
-  // let endRoute = "";
-  let endRoute = ref("");
   enum Routes {
     Status = "status",
     Sync = "sync",
@@ -12,12 +9,8 @@
     Smart = "smart",
     Scrub = "scrub",
   }
-  // const useSnapraidFetch = createFetch({
-  //   baseUrl: baseRoute,
-  //   options: {
-  //     immediate: false,
-  //   },
-  // });
+  const baseRoute = `http://localhost:8080/api/snapraid`;
+  const endPoint = ref("");
   const {
     data,
     error,
@@ -28,7 +21,7 @@
     isFinished,
     canAbort,
     execute,
-  } = useSnapraidFetch(endRoute).json();
+  } = useSnapraidFetch(endPoint).json();
   const text = reactive({
     // response,
     isFinished,
@@ -38,12 +31,13 @@
     error,
     data,
   });
-  function executeFetch(test: string) {
-    endRoute.value = test;
-    console.log(endRoute);
+
+  function executeFetch(routeEndPoint: string) {
+    endPoint.value = routeEndPoint;
 
     execute();
   }
+
   function useSnapraidFetch(route: Ref<string>) {
     const fetchFactory = createFetch({
       baseUrl: baseRoute,
@@ -51,12 +45,9 @@
         immediate: false,
       },
     });
-    console.log("route.value: ", route.value);
 
-    if (route.value === "sync") return fetchFactory(route.value).put();
     return fetchFactory(route);
   }
-  // { statusCode, error, data, execute } = useSnapraidFetch(Routes.Status);
 </script>
 <template>
   <h1>Snapraid GUI</h1>
