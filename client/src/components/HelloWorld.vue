@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { reactive, Ref, ref } from "vue";
+  import { useMainStore } from "@/stores/main";
   import { createFetch } from "@vueuse/core";
 
   enum Routes {
@@ -9,6 +10,7 @@
     Smart = "smart",
     Scrub = "scrub",
   }
+  const store = useMainStore();
   const baseRoute = `http://localhost:8080/api/snapraid`;
   const endPoint = ref("");
   const {
@@ -58,5 +60,6 @@
   <button @click="executeFetch(Routes.Scrub)">start scrub</button>
   <pre v-if="isFinished">
     {{ text }}
+    {{ store.name }}
   </pre>
 </template>
