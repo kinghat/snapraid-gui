@@ -17,9 +17,9 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.105.0/fs/mod.ts";
-export * as path from "https://deno.land/std@0.105.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.105.0/flags/mod.ts";
+} from "https://deno.land/std@0.106.0/fs/mod.ts";
+export * as path from "https://deno.land/std@0.106.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.106.0/flags/mod.ts";
 // export {
 //   Line,
 //   Option,
