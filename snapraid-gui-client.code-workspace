@@ -6,6 +6,7 @@
     }
   ],
   "settings": {
-    "deno.enable": false
+    "deno.enable": false,
+    "deno.path": "/home/kinghat/.deno/bin/deno"
   }
 }

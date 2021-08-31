@@ -7,20 +7,10 @@ export default defineConfig({
     alias: {
       "@": "/src",
     },
+    // alias: [
+    //   { find: "@", replacement: "/src" },
+    //   // { find: "views", replacement: "/src/views" },
+    //   // { find: "components", replacement: "/src/components" },
+    // ],
   },
 });
-
-// export default defineConfig({
-//   plugins: [vue()],
-//   resolve: {
-//     alias:
-// [
-//   { find: "@", replacement: "/src" },
-//   // { find: 'views', replacement: '/src/views' },
-//   // { find: 'components', replacement: '/src/components' },
-// ],
-//       {
-//         "@": "/src",
-//       },
-//   },
-// });
