@@ -18,6 +18,11 @@
     "deno.lint": true,
     "deno.unstable": true,
     "deno.path": "/home/kinghat/.deno/bin/deno",
+    "deno.suggest.imports.hosts": {
+      "https://deno.land": true,
+      "https://x.nest.land": true,
+      "https://deno.land/x": true
+    },
     "files.exclude": {
       "api": true,
       "client": true

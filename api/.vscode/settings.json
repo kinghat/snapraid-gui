@@ -1,5 +1,10 @@
 {
   "deno.enable": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true,
+    "https://x.nest.land": true,
+    "https://deno.land/x": true
+  },
   "[typescript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
   }
