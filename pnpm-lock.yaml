@@ -4,9 +4,9 @@ importers:
 
   .:
     specifiers:
-      pnpm: ^6.14.5
+      pnpm: ^6.14.7
     devDependencies:
-      pnpm: 6.14.5
+      pnpm: 6.14.7
 
   client:
     specifiers:
@@ -618,8 +618,8 @@ packages:
       vue-demi: 0.11.3_vue@3.2.11
     dev: false
 
-  /pnpm/6.14.5:
-    resolution: {integrity: sha512-+N1B+Bj2JKZJ1GDJS141OgnDmwxAavHi/ecU3IIl0QunPSVBXxd51DbVizCw/mPwIB3UmeT474Fyz8o3Xj9sXA==}
+  /pnpm/6.14.7:
+    resolution: {integrity: sha512-/pjz4Eod3Heyxw/QCGLYpkZR8YNuzTTblgcVC+qvvYCtX0Wb5J9jVcbHoSRqC2jeo4ldtg8H9dssPlHlH50I7w==}
     engines: {node: '>=12.17'}
     hasBin: true
     dev: true
