@@ -1,5 +1,6 @@
 // check for updates:
 // deno run --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' --allow-read='.' --allow-write='deps.ts' https://deno.land/x/dmm@v1.3.2/mod.ts check
+export { config } from "https://deno.land/x/dot_env@0.2.0/mod.ts";
 import {
   Application,
   Context,

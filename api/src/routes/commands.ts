@@ -6,7 +6,7 @@ import {
   startScrub,
   startSync,
   startTouch,
-} from "../controllers/snapraid.ts";
+} from "../controllers/snapraidController.ts";
 
 const router = new Router();
 router.get("/status", async ({ response }: RouterContext) => {
