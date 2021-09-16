@@ -21,6 +21,14 @@ export {
 } from "https://deno.land/std@0.107.0/fs/mod.ts";
 export * as path from "https://deno.land/std@0.107.0/path/mod.ts";
 export { parse } from "https://deno.land/std@0.107.0/flags/mod.ts";
+export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+export {
+  create,
+  decode,
+  getNumericDate,
+  validate,
+  verify,
+} from "https://deno.land/x/djwt@v2.4/mod.ts";
 // export {
 //   Line,
 //   Option,
