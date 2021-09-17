@@ -29,9 +29,3 @@ export {
   validate,
   verify,
 } from "https://deno.land/x/djwt@v2.4/mod.ts";
-// export {
-//   Line,
-//   Option,
-//   Subcommand,
-//   SubcommandOption,
-// } from "https://deno.land/x/line@v0.1.1/mod.ts";
