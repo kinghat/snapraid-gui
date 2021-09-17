@@ -8,7 +8,8 @@ import {
   startTouch,
 } from "../controllers/snapraidController.ts";
 
-const router = new Router();
+// const router = new Router();
+const router = new Router({ prefix: "/api/snapraid" });
 router.get("/status", async ({ response }: RouterContext) => {
   response.body = { route: "status", ...await getStatus() };
 });
