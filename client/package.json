@@ -7,15 +7,15 @@
     "client:serve": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^6.3.3",
+    "@vueuse/core": "^6.4.1",
     "pinia": "^2.0.0-rc.9",
-    "vue": "^3.2.11"
+    "vue": "^3.2.12"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.6.2",
-    "@vue/compiler-sfc": "^3.2.11",
+    "@vitejs/plugin-vue": "^1.8.1",
+    "@vue/compiler-sfc": "^3.2.12",
     "typescript": "^4.4.3",
-    "vite": "^2.5.7",
+    "vite": "^2.5.10",
     "vue-tsc": "^0.3.0"
   }
 }
