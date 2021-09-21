@@ -1,6 +1,6 @@
 import { Router, RouterContext } from "../../deps.ts";
 
-const router = new Router();
+const router = new Router({ prefix: "/api/auth" });
 
 router.post("/register", async ({ response }: RouterContext) => {
   response.body = {};
