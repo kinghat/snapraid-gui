@@ -6,7 +6,7 @@ import {
   Context,
   Router,
   RouterContext,
-} from "https://deno.land/x/oak@v9.0.0/mod.ts";
+} from "https://deno.land/x/oak@v9.0.1/mod.ts";
 // export { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 export { Application, Context, Router };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
@@ -29,3 +29,9 @@ export {
   validate,
   verify,
 } from "https://deno.land/x/djwt@v2.4/mod.ts";
+export {
+  Database,
+  DataTypes,
+  Model,
+  PostgresConnector,
+} from "https://deno.land/x/denodb@v1.0.39/mod.ts";
