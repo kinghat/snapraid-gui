@@ -9,11 +9,11 @@
   "dependencies": {
     "@vueuse/core": "^6.5.3",
     "pinia": "^2.0.0-rc.9",
-    "vue": "^3.2.18"
+    "vue": "^3.2.19"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.2",
-    "@vue/compiler-sfc": "^3.2.18",
+    "@vue/compiler-sfc": "^3.2.19",
     "typescript": "^4.4.3",
     "vite": "^2.5.10",
     "vue-tsc": "^0.3.0"
