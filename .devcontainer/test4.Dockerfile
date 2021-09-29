@@ -33,11 +33,11 @@ ARG UBUNTU_TAG=20.04
 
 FROM ubuntu:${UBUNTU_TAG}
 
-ARG DENO_VERSION=1.11.2
+ARG DENO_VERSION=1.14.2
 
 RUN apt-get -qq update \
   && apt-get upgrade -y -o Dpkg::Options::="--force-confold" \
-  && apt-get -qq install -y ca-certificates curl unzip sudo smartmontools git --no-install-recommends \
+  && apt-get -qq install -y ca-certificates curl unzip sudo smartmontools git sqlite3 libsqlite3-dev --no-install-recommends \
   && curl -fsSL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip \
   --output deno.zip \
   && unzip deno.zip \
@@ -66,6 +66,9 @@ RUN chmod 755 /usr/local/bin/docker-entrypoint.sh
 COPY --from=build /build/snapraid /usr/local/bin/snapraid
 COPY ./config/snapraid.conf /etc
 
+RUN mkdir /db \
+  && chown --recursive $USERNAME:$USERNAME /db
+
 WORKDIR /workspace
 
 ENTRYPOINT ["docker-entrypoint.sh"]
@@ -74,4 +77,4 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 USER $USERNAME
 
-CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "api/src/server.ts"]
+CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "api/src/server.ts"]

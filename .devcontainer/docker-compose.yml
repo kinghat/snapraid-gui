@@ -5,9 +5,9 @@ services:
       dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: 20.04
-        DENO_VERSION: 1.14.1
+        DENO_VERSION: 1.14.2
         # VARIANT: 16
-        # USERNAME: vscode
+        # USERNAME: kinghat
       # environment:
     ports:
       - 8080:8080
@@ -16,6 +16,8 @@ services:
       - ..:/workspace:cached
       # - ./config:/config
       - /dev:/dev
+      # - ./db:/db
+    # user: kinghat:kinghat
     # cap_add:
     #   - SYS_ADMIN
     #   - MKNOD
