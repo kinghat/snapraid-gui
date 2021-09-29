@@ -16,3 +16,11 @@ GET http://{{host}}/api/snapraid/scrub
 GET http://{{host}}/api/snapraid/sync
 ###
 GET http://{{host}}/api/snapraid/touch
+###
+POST http://{{host}}/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "Test1",
+    "password": "testtest"
+}

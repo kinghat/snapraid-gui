@@ -18,9 +18,9 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.107.0/fs/mod.ts";
-export * as path from "https://deno.land/std@0.107.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.107.0/flags/mod.ts";
+} from "https://deno.land/std@0.109.0/fs/mod.ts";
+export * as path from "https://deno.land/std@0.109.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.109.0/flags/mod.ts";
 export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 export {
   create,
@@ -35,3 +35,11 @@ export {
   Model,
   SQLite3Connector,
 } from "https://deno.land/x/denodb@v1.0.39/mod.ts";
+export {
+  compare,
+  compareSync,
+  genSalt,
+  genSaltSync,
+  hash,
+  hashSync,
+} from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
