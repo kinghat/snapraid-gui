@@ -1,4 +1,5 @@
 import { Router, RouterContext } from "../../deps.ts";
+import { validateJWT } from "../controllers/authController.ts";
 import {
   getDiff,
   getSmart,
@@ -10,7 +11,7 @@ import {
 
 // const router = new Router();
 const router = new Router({ prefix: "/api/snapraid" });
-router.get("/status", async ({ response }: RouterContext) => {
+router.get("/status", validateJWT, async ({ response }: RouterContext) => {
   response.body = { route: "status", ...await getStatus() };
 });
 router.get("/smart", async ({ response }: RouterContext) => {
