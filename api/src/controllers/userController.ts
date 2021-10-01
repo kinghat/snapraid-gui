@@ -1,35 +1,35 @@
-import { hash, RouterContext } from "../../deps.ts";
+import { hash, RouterContext, Status } from "../../deps.ts";
 import { checkPassword, generateToken } from "./authController.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
 export const registerUser = async ({ request, response }: RouterContext) => {
   try {
+    // Check if single user has already been created
+    const userQuery = await User.count();
+
+    if (userQuery > 0) {
+      response.status = Status.Conflict;
+      response.body = { error: `A user has already been created.` };
+
+      return;
+    }
+
     const json: UserType = await request.body().value;
+
     json.username = json.username.trim();
     json.password = json.password.trim();
 
-    // Check if username is unique
-    const user: User[] = await User.where({
-      username: json.username,
-    }).all();
-    console.log(user);
-
-    if (user.length >= 1) {
-      throw { error: "Username Already taken" };
-    }
-
-    // Hash password
     const passwordHash = await hash(json.password);
-    const val = await User.create({ ...json, password: passwordHash });
+    const newUser = await User.create({ ...json, password: passwordHash });
+    console.log("newUser", newUser);
 
-    // return session and token
-    response.body = await generateToken(val);
+    response.status = Status.Created;
+    response.body = await generateToken(newUser);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    response.status = Status.InternalServerError;
     response.body = error;
-
-    response.status = 500;
   }
 };
 
