@@ -21,15 +21,12 @@
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
-    "denoland.vscode-deno",
-    "streetsidesoftware.code-spell-checker",
-    "humao.rest-client",
-    "alexcvzz.vscode-sqlite"
-    // "rangav.vscode-thunder-client"
-    // "johnsoncodehk.volar",
-    // "dbaeumer.vscode-eslint",
-    // "esbenp.prettier-vscode"
-  ],
+	"denoland.vscode-deno",
+	"streetsidesoftware.code-spell-checker",
+	"humao.rest-client",
+	"alexcvzz.vscode-sqlite",
+	"gruntfuggly.todo-tree"
+],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [8080],
   "postAttachCommand": "sudo deno install --unstable --allow-read --allow-write --name stubby api/helpers/stubby/stubby.ts"

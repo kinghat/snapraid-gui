@@ -6,6 +6,11 @@
 GET http://{{host}}/api
 ###
 GET http://{{host}}/api/snapraid/status
+Content-Type: application/json
+
+{
+  "jwt": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRlc3QwIiwiZXhwIjoxNjMyOTQxNDU4fQ.Mf5JgvgPoK_HR06oBdv2X5YuMGuEKMo0LuVpjZyFXWbD3aGoHPg_ny0y2Nx_GlQmrzq_hYBYGL5MObXII8D4iQ"
+}
 ###
 GET http://{{host}}/api/snapraid/smart
 ###
@@ -21,6 +26,14 @@ POST http://{{host}}/api/auth/register
 Content-Type: application/json
 
 {
-    "username": "Test1",
+    "username": "Tester",
+    "password": "testtest"
+}
+###
+POST http://{{host}}/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Test0",
     "password": "testtest"
 }
