@@ -1,6 +1,6 @@
 import { User } from "../db/models/userModel.ts";
 // import { UserType } from "../types.ts";
-import type { RouterContext } from "../../deps.ts";
+import { RouterContext, Status } from "../../deps.ts";
 import { compare } from "../../deps.ts";
 import { create, getNumericDate, verify } from "../../deps.ts";
 
@@ -27,18 +27,30 @@ export const validateJWT = async (
   { request, response }: RouterContext,
   next: VoidFunction,
 ) => {
-  const body = await request.body().value;
-  const jwt = body?.jwt;
+  const authHeader = request.headers.get("Authorization");
 
+  // const jwt = authHeader?.jwt;
   try {
+    if (!authHeader) {
+      response.status = Status.Unauthorized;
+      response.body = { error: "Missing Authorization Header." };
+
+      return;
+    }
+
+    const jwt = authHeader?.split(" ")[1];
+
     if (!jwt) {
-      throw { error: "Missing JWT Token 😨" };
+      response.status = Status.Unauthorized;
+      response.body = { error: "Missing JWT." };
+
+      return;
     }
 
     await verify(jwt, key)
-      .then(async () => {
+      .then(() => {
         console.log("Valid JWT Token! 😎");
-        await next(); // The next() will continue with the excecution
+        next(); // The next() will continue with the excecution
       })
       .catch((e) => {
         console.log(e);
@@ -53,8 +65,6 @@ export const validateJWT = async (
 };
 
 export const generateToken = async (user: User) => {
-  console.log(key);
-
   const jwt = await create(
     { alg: "HS512", typ: "JWT" },
     {
