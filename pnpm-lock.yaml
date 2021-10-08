@@ -4,23 +4,23 @@ importers:
 
   .:
     specifiers:
-      pnpm: ^6.16.0
+      pnpm: ^6.16.1
     devDependencies:
-      pnpm: 6.16.0
+      pnpm: 6.16.1
 
   client:
     specifiers:
       '@vitejs/plugin-vue': ^1.9.2
       '@vue/compiler-sfc': ^3.2.19
       '@vueuse/core': ^6.5.3
-      pinia: ^2.0.0-rc.10
+      pinia: ^2.0.0-rc.11
       typescript: ^4.4.3
       vite: ^2.6.2
       vue: ^3.2.19
       vue-tsc: ^0.3.0
     dependencies:
       '@vueuse/core': 6.5.3_vue@3.2.19
-      pinia: 2.0.0-rc.10_typescript@4.4.3+vue@3.2.19
+      pinia: 2.0.0-rc.11_typescript@4.4.3+vue@3.2.19
       vue: 3.2.19
     devDependencies:
       '@vitejs/plugin-vue': 1.9.2_vite@2.6.2
@@ -604,8 +604,8 @@ packages:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
 
-  /pinia/2.0.0-rc.10_typescript@4.4.3+vue@3.2.19:
-    resolution: {integrity: sha512-WY0KQoHxSBylhGc6aBQKPFfAupYHWpI1QBQKJSyK9btwwMTVQpwCdePgPho+ZoEMl832jb7RwfI5TN1srV5VEA==}
+  /pinia/2.0.0-rc.11_typescript@4.4.3+vue@3.2.19:
+    resolution: {integrity: sha512-JJinfdMn52Id5/+rOJXP4zRszuiOlunEoVt8gYMneAZ8IyXKPvw9/Cu+HztB+53dHyNM7GdjX+uhjKBNs31tvQ==}
     peerDependencies:
       '@vue/composition-api': ^1.2.2
       typescript: ^4.4.3
@@ -622,8 +622,8 @@ packages:
       vue-demi: 0.11.4_vue@3.2.19
     dev: false
 
-  /pnpm/6.16.0:
-    resolution: {integrity: sha512-g5rbneSqacQaEW0gdvGouxNHbDIpLTShg+cS4yCUwnj32RwMHwxChtcxPOR9VNZvNegcKE9LFUA0PA/uN37mDA==}
+  /pnpm/6.16.1:
+    resolution: {integrity: sha512-oTZtaWJvvQ1V4KzpPya/BYYF90c6ICKmFYof8DAzMi0g2PEGseSVRdw/A2ov6mQJxBjHyRyYp/j42j8QOqRuKw==}
     engines: {node: '>=12.17'}
     hasBin: true
     dev: true
@@ -923,8 +923,8 @@ packages:
     resolution: {integrity: sha512-jkjy6pjU1fxUvI51P+gCsxg1u2n8LSt0W6KrCNQceaziKzff74GoWmjVG46KieVzybO1sttPQmYfrwSHey7GUA==}
     dev: true
 
-  /vscode-vue-languageservice/0.27.27:
-    resolution: {integrity: sha512-q5vaaTxQpsqr4O2h2A5zXQtK17ZHKdrcjv6gZaItTBcI4rxw6GIHoblYsNXMo+dhBZEmFmyI18iPn+a7RajFEQ==}
+  /vscode-vue-languageservice/0.27.28:
+    resolution: {integrity: sha512-dkYufKL/kchAxIxz2mYJDwsQuc7wnjTY+vc+sVz/DkFWfPEK0VaOStuKc85UME6VJ2IJzGEN1LHERGM65u8deQ==}
     dependencies:
       '@volar/code-gen': 0.27.24
       '@volar/html2pug': 0.27.13
@@ -983,7 +983,7 @@ packages:
       typescript: '*'
     dependencies:
       typescript: 4.4.3
-      vscode-vue-languageservice: 0.27.27
+      vscode-vue-languageservice: 0.27.28
     dev: true
 
   /vue/3.2.19:

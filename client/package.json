@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^6.5.3",
-    "pinia": "^2.0.0-rc.10",
+    "pinia": "^2.0.0-rc.11",
     "vue": "^3.2.19"
   },
   "devDependencies": {
