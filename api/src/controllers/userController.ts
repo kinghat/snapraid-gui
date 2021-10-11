@@ -1,5 +1,5 @@
 import { hash, RouterContext, Status } from "../../deps.ts";
-import { checkPassword, generateToken } from "./authController.ts";
+import { checkPassword } from "./authController.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
@@ -25,7 +25,7 @@ export const registerUser = async ({ request, response }: RouterContext) => {
     console.log("newUser", newUser);
 
     response.status = Status.Created;
-    response.body = await generateToken(newUser);
+    // response.body = await generateToken(newUser);
   } catch (error) {
     console.error(error);
     response.status = Status.InternalServerError;
@@ -55,7 +55,7 @@ export const loginUser = async ({ request, response }: RouterContext) => {
     }
 
     // return session and token
-    response.body = await generateToken(val);
+    // response.body = await generateToken(val);
   } catch (error) {
     console.error(error);
     response.body = error;

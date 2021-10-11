@@ -5,6 +5,6 @@ const router = new Router({ prefix: "/api/auth" });
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-// router.get("/logout", logoutUser);
+router.post("/logout", loginUser);
 
 export default router;

@@ -1,5 +1,6 @@
 import { Router, RouterContext } from "../../deps.ts";
-import { validateJWT } from "../controllers/authController.ts";
+import { session } from "../middlewares/authMiddleware.ts";
+// import { validateJWT } from "../controllers/authController.ts";
 import {
   getDiff,
   getSmart,
@@ -11,9 +12,13 @@ import {
 
 // const router = new Router();
 const router = new Router({ prefix: "/api/snapraid" });
-router.get("/status", validateJWT, async ({ response }: RouterContext) => {
-  response.body = { route: "status", ...await getStatus() };
-});
+router.get(
+  "/status",
+  session.initMiddleware(),
+  async ({ response }: RouterContext) => {
+    response.body = { route: "status", ...await getStatus() };
+  },
+);
 router.get("/smart", async ({ response }: RouterContext) => {
   response.body = { route: "smart", ...await getSmart() };
 });
