@@ -23,13 +23,13 @@ export {
 export * as path from "https://deno.land/std@0.110.0/path/mod.ts";
 export { parse } from "https://deno.land/std@0.110.0/flags/mod.ts";
 export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
-export {
-  create,
-  decode,
-  getNumericDate,
-  validate,
-  verify,
-} from "https://deno.land/x/djwt@v2.4/mod.ts";
+// export {
+//   create,
+//   decode,
+//   getNumericDate,
+//   validate,
+//   verify,
+// } from "https://deno.land/x/djwt@v2.4/mod.ts";
 export {
   Database,
   DataTypes,
@@ -44,3 +44,4 @@ export {
   hash,
   hashSync,
 } from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+export { Session } from "https://deno.land/x/oak_sessions@v3.1.2/mod.ts";
