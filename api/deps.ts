@@ -44,4 +44,7 @@ export {
   hash,
   hashSync,
 } from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
-export { Session } from "https://deno.land/x/oak_sessions@v3.1.2/mod.ts";
+export {
+  Session,
+  SqliteStore,
+} from "https://deno.land/x/oak_sessions@v3.1.2/mod.ts";
