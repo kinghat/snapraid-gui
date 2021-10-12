@@ -13,21 +13,21 @@ importers:
       '@vitejs/plugin-vue': ^1.9.3
       '@vue/compiler-sfc': ^3.2.20
       '@vueuse/core': ^6.5.3
-      pinia: ^2.0.0-rc.12
-      typescript: ^4.4.3
+      pinia: ^2.0.0-rc.13
+      typescript: ^4.4.4
       vite: ^2.6.7
       vue: ^3.2.20
       vue-tsc: ^0.28.3
     dependencies:
       '@vueuse/core': 6.5.3_vue@3.2.20
-      pinia: 2.0.0-rc.12_typescript@4.4.3+vue@3.2.20
+      pinia: 2.0.0-rc.13_typescript@4.4.4+vue@3.2.20
       vue: 3.2.20
     devDependencies:
       '@vitejs/plugin-vue': 1.9.3_vite@2.6.7
       '@vue/compiler-sfc': 3.2.20
-      typescript: 4.4.3
+      typescript: 4.4.4
       vite: 2.6.7
-      vue-tsc: 0.28.3_typescript@4.4.3
+      vue-tsc: 0.28.3_typescript@4.4.4
 
 packages:
 
@@ -156,8 +156,8 @@ packages:
       '@vue/compiler-dom': 3.2.20
       '@vue/shared': 3.2.20
 
-  /@vue/devtools-api/6.0.0-beta.18:
-    resolution: {integrity: sha512-56vRhO7nXWWFYTx520BQSDlQH5VYpwy62hFDEqi2yHHEBpEqseOP5WYQusq7BEW3DXSY9E9cfPVR5CFtJbKuMg==}
+  /@vue/devtools-api/6.0.0-beta.19:
+    resolution: {integrity: sha512-ObzQhgkoVeoyKv+e8+tB/jQBL2smtk/NmC9OmFK8UqdDpoOdv/Kf9pyDWL+IFyM7qLD2C75rszJujvGSPSpGlw==}
     dev: false
 
   /@vue/reactivity/3.2.20:
@@ -599,10 +599,10 @@ packages:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
 
-  /pinia/2.0.0-rc.12_typescript@4.4.3+vue@3.2.20:
-    resolution: {integrity: sha512-1MqXgyiju5fcJBfNO+aU5GP24ZxoaC5bjosSTVnb13fJYu8CfFxCZ/XWwMoD1QnZFq6JGbYigZNCaJDL2tmzQg==}
+  /pinia/2.0.0-rc.13_typescript@4.4.4+vue@3.2.20:
+    resolution: {integrity: sha512-NLOqK+tCIx1a4qZByqLZVdAK7ilTxkG6Opmj1O8hTjxpu4VSO2+eL2pPcO3JE/4ifZ6FBx87X2DU7NTY36z7Bw==}
     peerDependencies:
-      '@vue/composition-api': ^1.2.3
+      '@vue/composition-api': ^1.2.4
       typescript: ^4.4.3
       vue: ^2.6.14 || ^3.2.0
     peerDependenciesMeta:
@@ -611,8 +611,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@vue/devtools-api': 6.0.0-beta.18
-      typescript: 4.4.3
+      '@vue/devtools-api': 6.0.0-beta.19
+      typescript: 4.4.4
       vue: 3.2.20
       vue-demi: 0.11.4_vue@3.2.20
     dev: false
@@ -775,8 +775,8 @@ packages:
     resolution: {integrity: sha1-zCAOqyYT9BZtJ/+a/HylbUnfbrQ=}
     dev: true
 
-  /typescript/4.4.3:
-    resolution: {integrity: sha512-4xfscpisVgqqDfPaJo5vkd+Qd/ItkoagnHpufr+i2QCHBsNYp+G7UAoyFl8aPtx879u38wPV65rZ8qbGZijalA==}
+  /typescript/4.4.4:
+    resolution: {integrity: sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -962,13 +962,13 @@ packages:
       vue: 3.2.20
     dev: false
 
-  /vue-tsc/0.28.3_typescript@4.4.3:
+  /vue-tsc/0.28.3_typescript@4.4.4:
     resolution: {integrity: sha512-7f3Dp11HqO1840ov3SJBRfps4NAwl1Es+Aa3Rcb9/EOnFqsT/9ebFcnz+yiHYjMbXHMPX8a7t2B1bADaKT7+nw==}
     hasBin: true
     peerDependencies:
       typescript: '*'
     dependencies:
-      typescript: 4.4.3
+      typescript: 4.4.4
       vscode-vue-languageservice: 0.28.3
     dev: true
 

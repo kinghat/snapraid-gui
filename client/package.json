@@ -8,13 +8,13 @@
   },
   "dependencies": {
     "@vueuse/core": "^6.5.3",
-    "pinia": "^2.0.0-rc.12",
+    "pinia": "^2.0.0-rc.13",
     "vue": "^3.2.20"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
     "@vue/compiler-sfc": "^3.2.20",
-    "typescript": "^4.4.3",
+    "typescript": "^4.4.4",
     "vite": "^2.6.7",
     "vue-tsc": "^0.28.3"
   }
