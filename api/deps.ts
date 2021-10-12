@@ -7,7 +7,7 @@ import {
   Router,
   RouterContext,
   Status,
-} from "https://deno.land/x/oak@v9.0.1/mod.ts";
+} from "https://deno.land/x/oak@v9.0.0/mod.ts"; // use v9.0.0 until this is fixed: https://github.com/jcs224/oak_sessions/issues/7
 // export { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 export { Application, Context, Router, Status };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
@@ -19,9 +19,9 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.110.0/fs/mod.ts";
-export * as path from "https://deno.land/std@0.110.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.110.0/flags/mod.ts";
+} from "https://deno.land/std@0.111.0/fs/mod.ts";
+export * as path from "https://deno.land/std@0.111.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.111.0/flags/mod.ts";
 export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 // export {
 //   create,
