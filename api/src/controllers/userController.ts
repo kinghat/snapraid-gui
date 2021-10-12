@@ -1,4 +1,5 @@
-import { hash, RouterContext, Status } from "../../deps.ts";
+import { Context, hash, RouterContext, Status } from "../../deps.ts";
+import { session } from "../middlewares/authMiddleware.ts";
 import { checkPassword } from "./authController.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
@@ -62,3 +63,18 @@ export const loginUser = async ({ request, response }: RouterContext) => {
     response.status = 500;
   }
 };
+
+export async function logoutUser({ response, cookies }: RouterContext) {
+  const sessionCookie = await cookies.get("session");
+
+  if (sessionCookie) {
+    session.deleteSession(sessionCookie);
+    response.body = { success: `Logged out.` };
+    response.status = Status.OK;
+  } else {
+    response.body = { error: `Not logged in.` };
+    response.status = Status.BadRequest;
+  }
+
+  response.redirect(`/login`);
+}

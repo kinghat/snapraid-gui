@@ -1,10 +1,16 @@
 import { Router } from "../../deps.ts";
-import { loginUser, registerUser } from "../controllers/userController.ts";
+import { session } from "../middlewares/authMiddleware.ts";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+} from "../controllers/userController.ts";
 
 const router = new Router({ prefix: "/api/auth" });
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.post("/logout", loginUser);
+router
+  .post("/register", session.initMiddleware(), registerUser)
+  .post("/login", session.initMiddleware(), loginUser)
+  .post("/logout", session.initMiddleware(), logoutUser);
 
 export default router;

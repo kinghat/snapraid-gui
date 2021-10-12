@@ -1,4 +1,4 @@
-import { Router, RouterContext } from "../../deps.ts";
+import { Router } from "../../deps.ts";
 import { session } from "../middlewares/authMiddleware.ts";
 // import { validateJWT } from "../controllers/authController.ts";
 import {
@@ -12,27 +12,12 @@ import {
 
 // const router = new Router();
 const router = new Router({ prefix: "/api/snapraid" });
-router.get(
-  "/status",
-  session.initMiddleware(),
-  async ({ response }: RouterContext) => {
-    response.body = { route: "status", ...await getStatus() };
-  },
-);
-router.get("/smart", async ({ response }: RouterContext) => {
-  response.body = { route: "smart", ...await getSmart() };
-});
-router.get("/diff", async ({ response }: RouterContext) => {
-  response.body = { route: "diff", ...await getDiff() };
-});
-router.get("/scrub", async ({ response }: RouterContext) => {
-  response.body = { route: "scrub", ...await startScrub() };
-});
-router.get("/sync", async ({ response }: RouterContext) => {
-  response.body = { route: "sync", ...await startSync() };
-});
-router.get("/touch", async ({ response }: RouterContext) => {
-  response.body = { route: "touch", ...await startTouch() };
-});
+router
+  .get("/status", session.initMiddleware(), getStatus)
+  .get("/smart", session.initMiddleware(), getSmart)
+  .get("/diff", session.initMiddleware(), getDiff)
+  .get("/scrub", session.initMiddleware(), startScrub)
+  .get("/sync", session.initMiddleware(), startSync)
+  .get("/touch", session.initMiddleware(), startTouch);
 
 export default router;

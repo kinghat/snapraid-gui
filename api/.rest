@@ -33,3 +33,4 @@ Content-Type: application/json
     "password": "testtest"
 }
 ###
+POST http://{{host}}/api/auth/logout
