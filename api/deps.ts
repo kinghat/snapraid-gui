@@ -6,12 +6,13 @@ import {
   Context,
   Router,
   RouterContext,
+  RouterMiddleware,
   Status,
 } from "https://deno.land/x/oak@v9.0.0/mod.ts"; // use v9.0.0 until this is fixed: https://github.com/jcs224/oak_sessions/issues/7
 // export { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 export { Application, Context, Router, Status };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
-export type { RouterContext };
+export type { RouterContext, RouterMiddleware };
 export { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 export {
   copy,

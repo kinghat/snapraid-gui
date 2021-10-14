@@ -11,7 +11,7 @@ export const registerUser = async ({ request, response }: RouterContext) => {
 
     if (userQuery > 0) {
       response.status = Status.Conflict;
-      response.body = { error: `A user has already been created.` };
+      response.body = { error: `This user has already been created.` };
 
       return;
     }
@@ -26,6 +26,8 @@ export const registerUser = async ({ request, response }: RouterContext) => {
     console.log("newUser", newUser);
 
     response.status = Status.Created;
+    response.redirect(`/login`);
+
     // response.body = await generateToken(newUser);
   } catch (error) {
     console.error(error);
@@ -34,46 +36,48 @@ export const registerUser = async ({ request, response }: RouterContext) => {
   }
 };
 
-export const loginUser = async ({ request, response }: RouterContext) => {
+export async function loginUser({ request, response, state }: RouterContext) {
   const json: UserType = await request.body().value;
 
   try {
     // Find username on database
-    const val: User = await User.where({
+    const user: User = await User.where({
       username: json.username,
     }).first();
 
     // Check if user has that password
     const validPass: boolean = await checkPassword(
       json.password,
-      val?.password?.toString() ?? "",
+      user?.password?.toString() ?? "",
     );
 
-    if (!val || !validPass) {
+    if (!user || !validPass) {
       throw { error: "Auth Error" };
     } else {
       console.log("valid user");
     }
 
-    // return session and token
-    // response.body = await generateToken(val);
+    state.session.set(`userId`, user.id);
+    response.status = Status.OK;
+    response.body = { message: `Login successful.` };
   } catch (error) {
     console.error(error);
     response.body = error;
-    response.status = 500;
+    response.status = Status.InternalServerError;
   }
-};
+}
 
 export async function logoutUser({ response, cookies }: RouterContext) {
   const sessionCookie = await cookies.get("session");
 
   if (sessionCookie) {
-    session.deleteSession(sessionCookie);
-    response.body = { success: `Logged out.` };
+    await session.deleteSession(sessionCookie);
+
     response.status = Status.OK;
+    response.body = { message: `Logged out.` };
   } else {
-    response.body = { error: `Not logged in.` };
     response.status = Status.BadRequest;
+    response.body = { message: `Not logged in.` };
   }
 
   response.redirect(`/login`);

@@ -43,7 +43,13 @@ export async function getStatus({ request, response }: RouterContext) {
     `cmd: status\nexitCode: ${exitCode}\nstdOut:\n${stdOut}\nstdErr:\n${stdErr}`,
   );
 
-  response.body = { route: "getStatus" };
+  response.body = {
+    route: "getStatus",
+    cmd: `snapraid status`,
+    exitCode,
+    stdOut,
+    stdErr,
+  };
   response.status = Status.OK;
 
   if (exitCode === 0) {

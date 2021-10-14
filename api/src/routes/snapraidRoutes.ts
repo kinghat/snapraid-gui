@@ -1,6 +1,6 @@
 import { Router } from "../../deps.ts";
 import { session } from "../middlewares/authMiddleware.ts";
-// import { validateJWT } from "../controllers/authController.ts";
+import { authorize } from "../middlewares/authMiddleware.ts";
 import {
   getDiff,
   getSmart,
@@ -11,13 +11,16 @@ import {
 } from "../controllers/snapraidController.ts";
 
 // const router = new Router();
-const router = new Router({ prefix: "/api/snapraid" });
-router
-  .get("/status", session.initMiddleware(), getStatus)
-  .get("/smart", session.initMiddleware(), getSmart)
-  .get("/diff", session.initMiddleware(), getDiff)
-  .get("/scrub", session.initMiddleware(), startScrub)
-  .get("/sync", session.initMiddleware(), startSync)
-  .get("/touch", session.initMiddleware(), startTouch);
+const snapraidRouter = new Router().prefix("/api/snapraid").use(
+  session.initMiddleware(),
+  authorize,
+);
+snapraidRouter
+  .get("/status", getStatus)
+  .get("/smart", getSmart)
+  .get("/diff", getDiff)
+  .get("/scrub", startScrub)
+  .get("/sync", startSync)
+  .get("/touch", startTouch);
 
-export default router;
+export default snapraidRouter;
