@@ -1,6 +1,6 @@
-import { Context, hash, RouterContext, Status } from "../../deps.ts";
-import { session } from "../middlewares/authMiddleware.ts";
-import { checkPassword } from "./authController.ts";
+import { hash, RouterContext, Status } from "../../deps.ts";
+import { session } from "../middlewares/authorizationMiddleware.ts";
+import { checkPassword } from "../helpers/authentication.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
@@ -36,7 +36,9 @@ export const registerUser = async ({ request, response }: RouterContext) => {
   }
 };
 
-export async function loginUser({ request, response, state }: RouterContext) {
+export const loginUser = async (
+  { request, response, state }: RouterContext,
+) => {
   const json: UserType = await request.body().value;
 
   try {
@@ -52,22 +54,23 @@ export async function loginUser({ request, response, state }: RouterContext) {
     );
 
     if (!user || !validPass) {
-      throw { error: "Auth Error" };
-    } else {
-      console.log("valid user");
+      response.status = Status.Unauthorized;
+      response.body = { message: "Authentication Error" };
+      response.redirect(`/login`);
     }
 
     state.session.set(`userId`, user.id);
     response.status = Status.OK;
     response.body = { message: `Login successful.` };
+    response.redirect(`/dashboard`);
   } catch (error) {
     console.error(error);
     response.body = error;
     response.status = Status.InternalServerError;
   }
-}
+};
 
-export async function logoutUser({ response, cookies }: RouterContext) {
+export const logoutUser = async ({ response, cookies }: RouterContext) => {
   const sessionCookie = await cookies.get("session");
 
   if (sessionCookie) {
@@ -81,4 +84,4 @@ export async function logoutUser({ response, cookies }: RouterContext) {
   }
 
   response.redirect(`/login`);
-}
+};

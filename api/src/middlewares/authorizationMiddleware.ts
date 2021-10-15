@@ -13,18 +13,6 @@ import {
 // const store = new MemoryStore();
 
 export const session = new Session();
-
-// export const authorize: RouterMiddleware = async function (
-//   { response, state }: RouterContext,
-//   next,
-// ) {
-//   throw new Error();
-//   if (await state.session.get("userId")) {
-//     await next();
-//   } else {
-//     response.status = 401;
-//   }
-// };
 export const authorize: RouterMiddleware = async (
   { response, state }: RouterContext,
   next,
@@ -34,5 +22,6 @@ export const authorize: RouterMiddleware = async (
   } else {
     response.status = Status.Unauthorized;
     response.body = { message: `Unauthorized` };
+    response.redirect(`/login`);
   }
 };

@@ -1,6 +1,5 @@
 import { Router } from "../../deps.ts";
-import { session } from "../middlewares/authMiddleware.ts";
-import { authorize } from "../middlewares/authMiddleware.ts";
+import { authorize, session } from "../middlewares/authorizationMiddleware.ts";
 import {
   getDiff,
   getSmart,
