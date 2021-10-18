@@ -13,4 +13,26 @@ export default defineConfig({
     //   // { find: "components", replacement: "/src/components" },
     // ],
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+      },
+      // "/": {
+      //   target: "http://localhost:8080",
+      //   changeOrigin: true,
+      //   secure: false,
+      //   bypass: (request, response) => {
+      //     if (request.url.startsWith("/login")) return request.url;}
+      // },
+      // "^(?!/login)": {
+      //   target: "http://localhost:3000",
+      //   changeOrigin: true,
+      //   secure: false,
+      //   rewrite: (path) => path.replace(/^\/login/, ""),
+      // },
+    },
+  },
 });

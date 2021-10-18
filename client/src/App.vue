@@ -1,20 +1,13 @@
 <template>
-  <HelloWorld />
+  <router-view></router-view>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
-  import HelloWorld from "./components/HelloWorld.vue";
-
-  export default defineComponent({
-    name: "App",
-    components: {
-      HelloWorld,
-    },
-  });
+<script setup lang="ts">
+  import Home from "./views/Home.vue";
+  import Login from "./views/Login.vue";
 </script>
 
-<style>
+<!-- <style>
   body {
     background-color: #bababa;
   }
@@ -27,4 +20,4 @@
     color: #2c3e50;
     margin-top: 20px;
   }
-</style>
+</style> -->

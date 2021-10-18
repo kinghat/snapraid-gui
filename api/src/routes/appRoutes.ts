@@ -1,11 +1,14 @@
 import { Router } from "../../deps.ts";
 import { authorize, session } from "../middlewares/authorizationMiddleware.ts";
-import { dashboard, root } from "../controllers/appController.ts";
+import { dashboard, home } from "../controllers/appController.ts";
 
-const appRouter = new Router();
+const appRouter = new Router().prefix("/api").use(
+  session.initMiddleware(),
+  authorize,
+);
 
 appRouter
-  .get("/", session.initMiddleware(), authorize, root)
+  .post("/", session.initMiddleware(), home)
   .post("/dashboard", session.initMiddleware(), authorize, dashboard);
 
 export default appRouter;
