@@ -8,7 +8,7 @@ import {
   RouterContext,
   RouterMiddleware,
   Status,
-} from "https://deno.land/x/oak@v9.0.0/mod.ts"; // use v9.0.0 until this is fixed: https://github.com/jcs224/oak_sessions/issues/7
+} from "https://deno.land/x/oak@v9.0.1/mod.ts";
 // export { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 export { Application, Context, Router, Status };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
@@ -46,7 +46,6 @@ export {
   hashSync,
 } from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 export {
-  MemoryStore, // use until denodb issue is sorted
   Session,
   SqliteStore,
-} from "https://deno.land/x/oak_sessions@v3.1.2/mod.ts";
+} from "https://deno.land/x/oak_sessions@v3.1.3/mod.ts";
