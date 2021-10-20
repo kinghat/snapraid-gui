@@ -14,10 +14,14 @@ import {
 
 export const session = new Session();
 export const authorize: RouterMiddleware = async (
-  { response, state }: RouterContext,
+  { request, response, state }: RouterContext,
   next,
 ) => {
   if (await state.session.get("userId")) {
+    if (request.url.pathname.match(`/api/authenticate`)) {
+      response.status = Status.Accepted;
+      response.body = { message: `Authorized` };
+    }
     await next();
   } else {
     response.status = Status.Unauthorized;

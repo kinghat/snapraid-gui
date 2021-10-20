@@ -10,7 +10,7 @@ import { home } from "../controllers/appController.ts";
 const authenticationRouter = new Router().prefix(`/api/authenticate`);
 
 authenticationRouter
-  .post("/", session.initMiddleware(), authorize, home)
+  .post("/", session.initMiddleware(), authorize)
   .post("/register", registerUser)
   .post("/login", session.initMiddleware(), loginUser)
   .post("/logout", session.initMiddleware(), logoutUser);

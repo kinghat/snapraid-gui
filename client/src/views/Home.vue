@@ -1,11 +1,28 @@
 <script setup lang="ts">
   import { useRouter } from "vue-router";
+  import { useFetch } from "@vueuse/core";
+
+  // import Home from "./views/Home.vue";
+  // import Login from "./views/Login.vue";
+  // import router from "./router";
 
   const router = useRouter();
+  // router.push("/login");
+  const { onFetchResponse, onFetchError } = useFetch(
+    "http://localhost:8080/api/authenticate",
+  ).post();
 
-  function login() {
+  onFetchResponse((response) => {
+    // router.push("/login");
+    console.log(`response.status: ${response.status}`);
+    response.status === 202 ? router.push("/dashboard") : router.push("/login");
+  });
+
+  onFetchError((error) => {
+    console.log(`error: ${error}`);
+
     router.push("/login");
-  }
+  });
 </script>
 
 <template>

@@ -26,9 +26,8 @@ export const registerUser = async ({ request, response }: RouterContext) => {
     console.log("newUser", newUser);
 
     response.status = Status.Created;
+    response.body = { message: "Created new user." };
     // response.redirect(`/login`);
-
-    // response.body = await generateToken(newUser);
   } catch (error) {
     console.error(error);
     response.status = Status.InternalServerError;
@@ -55,8 +54,10 @@ export const loginUser = async (
 
     if (!user || !validPass) {
       response.status = Status.Unauthorized;
-      response.body = { message: "Authentication Error" };
-      response.redirect(`/login`);
+      response.body = { message: "Unauthorized" };
+      // response.redirect(`/login`);
+
+      return;
     }
 
     state.session.set(`userId`, user.id);
