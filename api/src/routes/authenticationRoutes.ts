@@ -5,10 +5,12 @@ import {
   logoutUser,
   registerUser,
 } from "../controllers/userController.ts";
+import { home } from "../controllers/appController.ts";
 
 const authenticationRouter = new Router().prefix(`/api/authenticate`);
 
 authenticationRouter
+  .post("/", session.initMiddleware(), authorize, home)
   .post("/register", registerUser)
   .post("/login", session.initMiddleware(), loginUser)
   .post("/logout", session.initMiddleware(), logoutUser);

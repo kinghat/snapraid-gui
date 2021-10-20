@@ -17,12 +17,13 @@
         >
       </div>
       <div class="mt-6">
-        <button
-          type="submit"
-          class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md  focus:outline-none hover:bg-indigo-500"
-        >
-          <router-link to="/login">Login</router-link>
-        </button>
+        <router-link to="/login">
+          <button
+            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md  focus:outline-none hover:bg-indigo-500"
+          >
+            Login
+          </button>
+        </router-link>
       </div>
     </div>
   </div>

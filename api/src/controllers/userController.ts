@@ -26,7 +26,7 @@ export const registerUser = async ({ request, response }: RouterContext) => {
     console.log("newUser", newUser);
 
     response.status = Status.Created;
-    response.redirect(`/login`);
+    // response.redirect(`/login`);
 
     // response.body = await generateToken(newUser);
   } catch (error) {
@@ -62,7 +62,7 @@ export const loginUser = async (
     state.session.set(`userId`, user.id);
     response.status = Status.OK;
     response.body = { message: `Login successful.` };
-    response.redirect(`/dashboard`);
+    // response.redirect(`/dashboard`);
   } catch (error) {
     console.error(error);
     response.body = error;
@@ -83,5 +83,5 @@ export const logoutUser = async ({ response, cookies }: RouterContext) => {
     response.body = { message: `Not logged in.` };
   }
 
-  response.redirect(`/login`);
+  // response.redirect(`/login`);
 };

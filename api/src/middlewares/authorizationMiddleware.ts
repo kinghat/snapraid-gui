@@ -22,6 +22,6 @@ export const authorize: RouterMiddleware = async (
   } else {
     response.status = Status.Unauthorized;
     response.body = { message: `Unauthorized` };
-    response.redirect(`/login`);
+    // response.redirect(`/login`);
   }
 };
