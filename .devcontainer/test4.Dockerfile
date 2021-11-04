@@ -77,4 +77,5 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 USER $USERNAME
 
-CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "api/src/server.ts"]
+# CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--allow-env", "api/src/server.ts"]
+CMD ["run", "--unstable", "--watch", "--no-check", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--allow-env", "api/src/server.ts"]

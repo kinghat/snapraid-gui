@@ -7,12 +7,13 @@ import {
 } from "../controllers/userController.ts";
 import { home } from "../controllers/appController.ts";
 
-const authenticationRouter = new Router().prefix(`/api/authenticate`);
+const authenticationRouter = new Router().prefix(`/api/auth`);
 
 authenticationRouter
-  .post("/", session.initMiddleware(), authorize)
+  .post("/authorize", session.initMiddleware(), authorize)
+  // .post("/authorize", session.initMiddleware(), authorize)
   .post("/register", registerUser)
   .post("/login", session.initMiddleware(), loginUser)
-  .post("/logout", session.initMiddleware(), logoutUser);
+  .post("/logout", logoutUser);
 
 export default authenticationRouter;

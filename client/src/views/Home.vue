@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { reactive } from "vue";
   import { useRouter } from "vue-router";
   import { useFetch } from "@vueuse/core";
 
@@ -8,14 +9,21 @@
 
   const router = useRouter();
   // router.push("/login");
-  const { onFetchResponse, onFetchError } = useFetch(
+  const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
     "http://localhost:8080/api/authenticate",
   ).post();
+  // const response = reactive({ error, data, statusCode });
+
+  // console.log(`error: ${response.error}`);
+  // console.log(`data: ${response.data}`);
+  // console.log(`sttausCode: ${response.statusCode}`);
+
+  // if (response.statusCode === 401) router.push("/login");
 
   onFetchResponse((response) => {
-    // router.push("/login");
     console.log(`response.status: ${response.status}`);
-    response.status === 202 ? router.push("/dashboard") : router.push("/login");
+
+    router.push("/dashboaord");
   });
 
   onFetchError((error) => {
@@ -28,11 +36,13 @@
 <template>
   <div class="flex items-center justify-center h-screen px-6 bg-gray-200">
     <div class="w-full max-w-sm p-6 bg-white rounded-md shadow-md">
-      <div class="flex items-center justify-center">
+      <!-- <div class="flex items-center justify-center">
         <span class="text-2xl font-semibold text-gray-700"
           >Snapraid GUI Home</span
         >
-      </div>
+        statusCode: {{ response.statusCode }} Error: {{ response.error }} Data:
+        {{ response.data }}
+      </div> -->
       <div class="mt-6">
         <router-link to="/login">
           <button

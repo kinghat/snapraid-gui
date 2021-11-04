@@ -23,13 +23,14 @@ export const registerUser = async ({ request, response }: RouterContext) => {
 
     const passwordHash = await hash(json.password);
     const newUser = await User.create({ ...json, password: passwordHash });
+
     console.log("newUser", newUser);
 
     response.status = Status.Created;
     response.body = { message: "Created new user." };
-    // response.redirect(`/login`);
   } catch (error) {
     console.error(error);
+
     response.status = Status.InternalServerError;
     response.body = error;
   }
@@ -55,7 +56,6 @@ export const loginUser = async (
     if (!user || !validPass) {
       response.status = Status.Unauthorized;
       response.body = { message: "Unauthorized" };
-      // response.redirect(`/login`);
 
       return;
     }
@@ -63,9 +63,9 @@ export const loginUser = async (
     state.session.set(`userId`, user.id);
     response.status = Status.OK;
     response.body = { message: `Login successful.` };
-    // response.redirect(`/dashboard`);
   } catch (error) {
     console.error(error);
+
     response.body = error;
     response.status = Status.InternalServerError;
   }
@@ -73,6 +73,8 @@ export const loginUser = async (
 
 export const logoutUser = async ({ response, cookies }: RouterContext) => {
   const sessionCookie = await cookies.get("session");
+
+  console.log(sessionCookie);
 
   if (sessionCookie) {
     await session.deleteSession(sessionCookie);
@@ -83,6 +85,4 @@ export const logoutUser = async ({ response, cookies }: RouterContext) => {
     response.status = Status.BadRequest;
     response.body = { message: `Not logged in.` };
   }
-
-  // response.redirect(`/login`);
 };

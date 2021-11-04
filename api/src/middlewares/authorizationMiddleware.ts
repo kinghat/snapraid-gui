@@ -18,7 +18,7 @@ export const authorize: RouterMiddleware = async (
   next,
 ) => {
   if (await state.session.get("userId")) {
-    if (request.url.pathname.match(`/api/authenticate`)) {
+    if (request.url.pathname.match(`/api/auth/authorize`)) {
       response.status = Status.Accepted;
       response.body = { message: `Authorized` };
     }
