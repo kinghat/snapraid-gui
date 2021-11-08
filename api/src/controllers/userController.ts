@@ -4,14 +4,14 @@ import { checkPassword } from "../helpers/authentication.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
-export const registerUser = async ({ request, response }: RouterContext) => {
+export const register = async ({ request, response }: RouterContext) => {
   try {
     // Check if single user has already been created
     const userQuery = await User.count();
 
     if (userQuery > 0) {
       response.status = Status.Conflict;
-      response.body = { error: `This user has already been created.` };
+      response.body = { error: `User already exists.` };
 
       return;
     }
@@ -36,7 +36,7 @@ export const registerUser = async ({ request, response }: RouterContext) => {
   }
 };
 
-export const loginUser = async (
+export const login = async (
   { request, response, state }: RouterContext,
 ) => {
   const json: UserType = await request.body().value;
@@ -60,7 +60,10 @@ export const loginUser = async (
       return;
     }
 
-    state.session.set(`userId`, user.id);
+    await state.session.set(`userId`, user.id);
+
+    console.log(`userId: ${await state.session.get(`userId`)}`);
+
     response.status = Status.OK;
     response.body = { message: `Login successful.` };
   } catch (error) {
@@ -71,18 +74,32 @@ export const loginUser = async (
   }
 };
 
-export const logoutUser = async ({ response, cookies }: RouterContext) => {
-  const sessionCookie = await cookies.get("session");
+export const logout = async (
+  { response, cookies, state }: RouterContext,
+) => {
+  // const sessionCookie = await cookies.get("session");
+  const isAuthenticated = await state.session.get(`userId`);
 
-  console.log(sessionCookie);
-
-  if (sessionCookie) {
-    await session.deleteSession(sessionCookie);
+  if (isAuthenticated) {
+    // await session.deleteSession(sessionCookie);
+    await state.session.deleteSession(await cookies.get(`session`));
 
     response.status = Status.OK;
     response.body = { message: `Logged out.` };
   } else {
+    await state.session.deleteSession(await cookies.get(`session`));
+
     response.status = Status.BadRequest;
     response.body = { message: `Not logged in.` };
   }
 };
+
+// export const logout = async (
+//   { response, state, cookies }: RouterContext,
+// ) => {
+//   // await session.deleteSession(sessionCookie);
+//   await state.session.deleteSession(await cookies.get(`session`));
+
+//   response.status = Status.OK;
+//   response.body = { message: `Logged out.` };
+// };

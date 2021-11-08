@@ -14,10 +14,16 @@ import {
 
 export const session = new Session();
 export const authorize: RouterMiddleware = async (
-  { request, response, state }: RouterContext,
+  { request, response, state, cookies }: RouterContext,
   next,
 ) => {
-  if (await state.session.get("userId")) {
+  const sessionID = await cookies.get(`session`);
+
+  console.log(`sessionID: ${sessionID}`);
+  console.log("session: ", await state.session.getSession(sessionID));
+  console.log(`sessionValid: ${await state.session.sessionValid(sessionID)}`);
+
+  if (await state.session.get(`userId`)) {
     if (request.url.pathname.match(`/api/auth/authorize`)) {
       response.status = Status.Accepted;
       response.body = { message: `Authorized` };
@@ -26,6 +32,5 @@ export const authorize: RouterMiddleware = async (
   } else {
     response.status = Status.Unauthorized;
     response.body = { message: `Unauthorized` };
-    // response.redirect(`/login`);
   }
 };

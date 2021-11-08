@@ -8,6 +8,6 @@ const appRouter = new Router().prefix("/api").use(
 );
 
 appRouter
-  .post("/dashboard", session.initMiddleware(), authorize, dashboard);
+  .post("/dashboard", dashboard);
 
 export default appRouter;
