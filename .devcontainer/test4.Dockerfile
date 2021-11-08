@@ -73,9 +73,6 @@ WORKDIR /workspace
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# RUN deno install --unstable --allow-read --allow-write --name stubby /workspace/api/helpers/stubby/stubby.ts
-
 USER $USERNAME
 
-# CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--allow-env", "api/src/server.ts"]
-CMD ["run", "--unstable", "--watch", "--no-check", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--allow-env", "api/src/server.ts"]
+CMD ["run", "--unstable", "--watch", "--allow-net", "--allow-run", "--allow-read", "--allow-write", "--allow-env", "--import-map", "api/import_map.json", "api/src/server.ts"]

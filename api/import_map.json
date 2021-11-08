@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "https://deno.land/std@0.106.0/node/events.ts": "https://deno.land/std@0.113.0/node/events.ts"
+  }
+}

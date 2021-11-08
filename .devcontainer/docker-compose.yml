@@ -6,7 +6,6 @@ services:
       args:
         UBUNTU_TAG: latest
         DENO_VERSION: 1.15.3
-        # DENO_VERSION: 1.13.2
         # VARIANT: 16
         # USERNAME: kinghat
       # environment:

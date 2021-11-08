@@ -23,6 +23,7 @@
       "https://x.nest.land": true,
       "https://deno.land/x": true
     },
+    "deno.importMap": "./import_map.json",
     "files.exclude": {
       "api": true,
       "client": true
