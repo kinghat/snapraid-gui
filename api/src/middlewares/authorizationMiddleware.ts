@@ -17,11 +17,13 @@ export const authorize: RouterMiddleware = async (
   { request, response, state, cookies }: RouterContext,
   next,
 ) => {
-  const sessionID = await cookies.get(`session`);
+  // const sessionId = await cookies.get(`session`);
 
-  console.log(`sessionID: ${sessionID}`);
-  console.log("session: ", await state.session.getSession(sessionID));
-  console.log(`sessionValid: ${await state.session.sessionValid(sessionID)}`);
+  console.log("sessionIdResponse: ", response.headers);
+  // console.log("sessionID: ", sessionId);
+  console.log("sessionID: ", await state.sessionID);
+  // console.log("session: ", await state.session.getSession(sessionId));
+  // console.log(`sessionValid: ${await state.session.sessionValid(sessionId)}`);
 
   if (await state.session.get(`userId`)) {
     if (request.url.pathname.match(`/api/auth/authorize`)) {

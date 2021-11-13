@@ -1,36 +1,7 @@
 <script setup lang="ts">
-  import { reactive } from "vue";
   import { useRouter } from "vue-router";
-  import { useFetch } from "@vueuse/core";
-
-  // import Home from "./views/Home.vue";
-  // import Login from "./views/Login.vue";
-  // import router from "./router";
 
   const router = useRouter();
-  // router.push("/login");
-  const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-    "http://localhost:8080/api/authenticate",
-  ).post();
-  // const response = reactive({ error, data, statusCode });
-
-  // console.log(`error: ${response.error}`);
-  // console.log(`data: ${response.data}`);
-  // console.log(`sttausCode: ${response.statusCode}`);
-
-  // if (response.statusCode === 401) router.push("/login");
-
-  onFetchResponse((response) => {
-    console.log(`response.status: ${response.status}`);
-
-    router.push("/dashboaord");
-  });
-
-  onFetchError((error) => {
-    console.log(`error: ${error}`);
-
-    router.push("/login");
-  });
 </script>
 
 <template>
@@ -44,13 +15,13 @@
         {{ response.data }}
       </div> -->
       <div class="mt-6">
-        <router-link to="/login">
+        <!-- <router-link to="/login">
           <button
-            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md  focus:outline-none hover:bg-indigo-500"
+            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md focus:outline-none hover:bg-indigo-500"
           >
             Login
           </button>
-        </router-link>
+        </router-link> -->
       </div>
     </div>
   </div>

@@ -9,9 +9,21 @@
 
   function login() {
     const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-      "http://localhost:8080/api/authenticate/login",
-    ).post();
-    router.push("/home");
+      "http://localhost:8080/api/auth/login",
+      { credentials: "include" },
+    ).post({ username: username.value, password: password.value });
+
+    onFetchResponse((response) => {
+      console.log(`response.status: ${response.status}`);
+
+      router.push("/dashboard");
+    });
+
+    onFetchError((error) => {
+      console.log(`error: ${error}`);
+
+      router.push("/login");
+    });
   }
 </script>
 
