@@ -6,10 +6,9 @@
   const router = useRouter();
   const username = ref();
   const password = ref();
-
-  function login() {
+  const signIn = () => {
     const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-      "http://localhost:8080/api/auth/login",
+      "http://localhost:8080/api/auth/signin",
       { credentials: "include" },
     ).post({ username: username.value, password: password.value });
 
@@ -22,18 +21,18 @@
     onFetchError((error) => {
       console.log(`error: ${error}`);
 
-      router.push("/login");
+      router.push("/signin");
     });
-  }
+  };
 </script>
 
 <template>
   <div class="flex items-center justify-center h-screen px-6 bg-gray-200">
     <div class="w-full max-w-sm p-6 bg-white rounded-md shadow-md">
       <div class="flex items-center justify-center">
-        <span class="text-2xl font-semibold text-gray-700">Login</span>
+        <span class="text-2xl font-semibold text-gray-700">Sign In</span>
       </div>
-      <form class="mt-4" @submit.prevent="login">
+      <form class="mt-4" @submit.prevent="signIn">
         <label class="block">
           <span class="text-sm text-gray-700">Username</span>
           <input
@@ -75,7 +74,7 @@
             type="submit"
             class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md  focus:outline-none hover:bg-indigo-500"
           >
-            Sign in
+            Sign In
           </button>
         </div>
       </form>

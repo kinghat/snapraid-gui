@@ -4,7 +4,7 @@ import { checkPassword } from "../helpers/authentication.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
-export const register = async ({ request, response }: RouterContext) => {
+export const signUp = async ({ request, response }: RouterContext) => {
   try {
     // Check if single user has already been created
     const userQuery = await User.count();
@@ -36,7 +36,7 @@ export const register = async ({ request, response }: RouterContext) => {
   }
 };
 
-export const login = async (
+export const signIn = async (
   { request, response, state }: RouterContext,
 ) => {
   const json: UserType = await request.body().value;
@@ -65,7 +65,7 @@ export const login = async (
     console.log(`userId: ${await state.session.get(`userId`)}`);
 
     response.status = Status.OK;
-    response.body = { message: `Login successful.` };
+    response.body = { message: `Sign in successful.` };
   } catch (error) {
     console.error(error);
 
@@ -74,7 +74,7 @@ export const login = async (
   }
 };
 
-export const logout = async (
+export const signOut = async (
   { response, cookies, state }: RouterContext,
 ) => {
   // const sessionCookie = await cookies.get("session");
@@ -85,12 +85,12 @@ export const logout = async (
     await state.session.deleteSession(await cookies.get(`session`));
 
     response.status = Status.OK;
-    response.body = { message: `Logged out.` };
+    response.body = { message: `Signed out.` };
   } else {
     await state.session.deleteSession(await cookies.get(`session`));
 
     response.status = Status.BadRequest;
-    response.body = { message: `Not logged in.` };
+    response.body = { message: `Not signed in.` };
   }
 };
 

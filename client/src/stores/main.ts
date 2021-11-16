@@ -2,12 +2,9 @@ import { defineStore } from "pinia";
 
 export const useMainStore = defineStore("main", {
   // a function that returns a fresh state
-  state() {
-    return {
-      counter: 0,
-      name: "Eduardo",
-    };
-  },
+  state: () => ({
+    isAuthorized: false,
+  }),
   // optional getters
   getters: {
     // doubleCount() {

@@ -60,6 +60,6 @@
   <button @click="executeFetch(Routes.Scrub)">start scrub</button>
   <pre v-if="isFinished">
     {{ text }}
-    {{ store.name }}
+    {{ store.isAuthorized }}
   </pre>
 </template>
