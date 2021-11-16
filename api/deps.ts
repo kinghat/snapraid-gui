@@ -48,4 +48,4 @@ export {
 export {
   Session,
   SqliteStore,
-} from "https://deno.land/x/oak_sessions@v3.1.3/mod.ts";
+} from "https://deno.land/x/oak_sessions@v3.2.0/mod.ts";
