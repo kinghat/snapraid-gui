@@ -1,17 +1,16 @@
-import { hash, RouterContext, Status } from "../../deps.ts";
-import { session } from "../middlewares/authorizationMiddleware.ts";
+import { hash, Middleware, Status } from "../../deps.ts";
 import { checkPassword } from "../helpers/authentication.ts";
 import { User } from "../db/models/userModel.ts";
 import { UserType } from "../types.ts";
 
-export const signUp = async ({ request, response }: RouterContext) => {
+export const signUp: Middleware = async ({ request, response }) => {
   try {
     // Check if single user has already been created
     const userQuery = await User.count();
 
     if (userQuery > 0) {
       response.status = Status.Conflict;
-      response.body = { error: `User already exists.` };
+      response.body = { error: `user already exists.` };
 
       return;
     }
@@ -27,7 +26,7 @@ export const signUp = async ({ request, response }: RouterContext) => {
     console.log("newUser", newUser);
 
     response.status = Status.Created;
-    response.body = { message: "Created new user." };
+    response.body = { message: "created new user." };
   } catch (error) {
     console.error(error);
 
@@ -36,8 +35,8 @@ export const signUp = async ({ request, response }: RouterContext) => {
   }
 };
 
-export const signIn = async (
-  { request, response, state }: RouterContext,
+export const signIn: Middleware = async (
+  { request, response, state },
 ) => {
   const json: UserType = await request.body().value;
 
@@ -55,7 +54,7 @@ export const signIn = async (
 
     if (!user || !validPass) {
       response.status = Status.Unauthorized;
-      response.body = { message: "Unauthorized" };
+      response.body = { message: "unauthorized" };
 
       return;
     }
@@ -65,7 +64,7 @@ export const signIn = async (
     console.log(`userId: ${await state.session.get(`userId`)}`);
 
     response.status = Status.OK;
-    response.body = { message: `Sign in successful.` };
+    response.body = { message: `sign in successful.` };
   } catch (error) {
     console.error(error);
 
@@ -74,32 +73,20 @@ export const signIn = async (
   }
 };
 
-export const signOut = async (
-  { response, cookies, state }: RouterContext,
+export const signOut: Middleware = async (
+  { response, state },
 ) => {
-  // const sessionCookie = await cookies.get("session");
   const isAuthenticated = await state.session.get(`userId`);
 
   if (isAuthenticated) {
-    // await session.deleteSession(sessionCookie);
-    await state.session.deleteSession(await cookies.get(`session`));
+    await state.session.deleteSession();
 
     response.status = Status.OK;
-    response.body = { message: `Signed out.` };
+    response.body = { message: `signed out.` };
   } else {
-    await state.session.deleteSession(await cookies.get(`session`));
+    await state.session.deleteSession();
 
     response.status = Status.BadRequest;
-    response.body = { message: `Not signed in.` };
+    response.body = { message: `not signed in.` };
   }
 };
-
-// export const logout = async (
-//   { response, state, cookies }: RouterContext,
-// ) => {
-//   // await session.deleteSession(sessionCookie);
-//   await state.session.deleteSession(await cookies.get(`session`));
-
-//   response.status = Status.OK;
-//   response.body = { message: `Logged out.` };
-// };

@@ -9,7 +9,6 @@ import {
   startTouch,
 } from "../controllers/snapraidController.ts";
 
-// const router = new Router();
 const snapraidRouter = new Router().prefix("/api/snapraid").use(
   session.initMiddleware(),
   authorize,

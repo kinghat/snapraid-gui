@@ -1,8 +1,7 @@
 import {
-  RouterContext,
-  RouterMiddleware,
+  Middleware,
   Session,
-  SqliteStore,
+  // SqliteStore,
   Status,
 } from "../../deps.ts";
 // import { db } from "../db/db.ts";
@@ -13,26 +12,21 @@ import {
 // const store = new MemoryStore();
 
 export const session = new Session();
-export const authorize: RouterMiddleware = async (
-  { request, response, state, cookies }: RouterContext,
+export const authorize: Middleware = async (
+  { request, response, state },
   next,
 ) => {
-  // const sessionId = await cookies.get(`session`);
-
   console.log("sessionIdResponse: ", response.headers);
-  // console.log("sessionID: ", sessionId);
   console.log("sessionID: ", await state.sessionID);
-  // console.log("session: ", await state.session.getSession(sessionId));
-  // console.log(`sessionValid: ${await state.session.sessionValid(sessionId)}`);
 
   if (await state.session.get(`userId`)) {
     if (request.url.pathname.match(`/api/auth/authorize`)) {
       response.status = Status.Accepted;
-      response.body = { message: `Authorized` };
+      response.body = { message: `authorized` };
     }
     await next();
   } else {
     response.status = Status.Unauthorized;
-    response.body = { message: `Unauthorized` };
+    response.body = { message: `unauthorized` };
   }
 };

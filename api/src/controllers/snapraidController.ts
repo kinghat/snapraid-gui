@@ -1,4 +1,5 @@
-import { RouterContext, Status } from "../../deps.ts";
+import { Status } from "../../deps.ts";
+import type { Middleware } from "../../deps.ts";
 
 // TODO implement snapraid commands
 // Commands:
@@ -32,7 +33,8 @@ async function subProcess(command: string[]) {
 }
 
 //status - Print the status of the array
-export async function getStatus({ request, response }: RouterContext) {
+
+export const getStatus: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -57,10 +59,10 @@ export async function getStatus({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
 
 //smart - SMART attributes of the array
-export async function getSmart({ request, response }: RouterContext) {
+export const getSmart: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -78,10 +80,10 @@ export async function getSmart({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
 
 //diff - Show the changes that needs to be synchronized
-export async function getDiff({ request, response }: RouterContext) {
+export const getDiff: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -99,10 +101,10 @@ export async function getDiff({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
 
 //sync - Synchronize the state of the array
-export async function startSync({ request, response }: RouterContext) {
+export const startSync: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -120,10 +122,10 @@ export async function startSync({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
 
 //scrub - Scrub the array
-export async function startScrub({ request, response }: RouterContext) {
+export const startScrub: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -141,10 +143,10 @@ export async function startScrub({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
 
 //touch - Sets arbitrarily the sub-second time-stamp of all the files that have it at zero.
-export async function startTouch({ request, response }: RouterContext) {
+export const startTouch: Middleware = async ({ response }) => {
   const { status: { code: exitCode }, stdOut, stdErr } = await subProcess([
     "sudo",
     "snapraid",
@@ -162,4 +164,4 @@ export async function startTouch({ request, response }: RouterContext) {
   } else {
     return { exitCode, stdOut, stdErr };
   }
-}
+};
