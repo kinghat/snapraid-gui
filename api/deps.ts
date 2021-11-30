@@ -20,10 +20,10 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.115.0/fs/mod.ts";
-export { copy } from "https://deno.land/std@0.115.0/fs/copy.ts";
-export * as path from "https://deno.land/std@0.115.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.115.0/flags/mod.ts";
+} from "https://deno.land/std@0.116.0/fs/mod.ts";
+export { copy } from "https://deno.land/std@0.116.0/fs/copy.ts";
+export * as path from "https://deno.land/std@0.116.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.116.0/flags/mod.ts";
 // export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
 // export {
 //   create,

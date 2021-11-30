@@ -1,13 +1,10 @@
 import { useMainStore } from "@/stores/main";
 import { useRouter } from "vue-router";
-import { useFetch } from "@vueuse/core";
 
 const useAuth = () => {
-  const router = useRouter();
-
   const isAuthorized = async () => {
-    const mainStore = useMainStore();
     let isAuthorized = false;
+    const mainStore = useMainStore();
     const response = await fetch("http://localhost:8080/api/auth/authorize", {
       method: "POST",
       credentials: "include",
@@ -19,25 +16,15 @@ const useAuth = () => {
 
     return isAuthorized;
   };
-  const signOut = () => {
-    const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-      "http://localhost:8080/api/auth/signout",
-      {
-        credentials: "include",
-      },
-    ).post();
+  const signOut = async () => {
+    const router = useRouter();
 
-    onFetchResponse((response) => {
-      console.log(`response.status: ${response.status}`);
-
-      router.push("/signin");
+    const response = await fetch("http://localhost:8080/api/auth/signout", {
+      method: "POST",
+      credentials: "include",
     });
 
-    onFetchError((error) => {
-      console.log(`error: ${error}`);
-
-      router.push("/signin");
-    });
+    response.status === 200 ? router.push("/signin") : router.push("/signin");
   };
 
   return { isAuthorized, signOut };

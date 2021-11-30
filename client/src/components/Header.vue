@@ -3,35 +3,35 @@
   import { useRoute, useRouter } from "vue-router";
   import { useMainStore } from "@/stores/main";
   import { useFetch } from "@vueuse/core";
-  import useAuth from "@/composables/useAuth";
+  // import useAuth from "@/composables/useAuth";
   // import { useSidebar } from "../hooks/useSidebar";
 
   const route = useRoute();
   const mainStore = useMainStore();
   const dropdownOpen = ref(false);
-  const { signOut } = useAuth();
+  // const { signOut } = useAuth();
   // const { isOpen } = useSidebar();
-  // const router = useRouter();
-  // const signOut = () => {
-  //   const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-  //     "http://localhost:8080/api/auth/signout",
-  //     {
-  //       credentials: "include",
-  //     },
-  //   ).post();
+  const router = useRouter();
+  const signOut = () => {
+    const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
+      "http://localhost:8080/api/auth/signout",
+      {
+        credentials: "include",
+      },
+    ).post();
 
-  //   onFetchResponse((response) => {
-  //     console.log(`response.status: ${response.status}`);
+    onFetchResponse((response) => {
+      console.log(`response.status: ${response.status}`);
 
-  //     router.push("/signin");
-  //   });
+      router.push("/signin");
+    });
 
-  //   onFetchError((error) => {
-  //     console.log(`error: ${error}`);
+    onFetchError((error) => {
+      console.log(`error: ${error}`);
 
-  //     router.push("/signin");
-  //   });
-  // };
+      router.push("/signin");
+    });
+  };
 </script>
 
 <template>
