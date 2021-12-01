@@ -15,7 +15,7 @@ importers:
       '@vue/compiler-sfc': ^3.2.23
       '@vueuse/core': ^7.1.2
       autoprefixer: ^10.4.0
-      pinia: ^2.0.4
+      pinia: ^2.0.5
       postcss: ^8.4.4
       tailwindcss: ^2.2.19
       typescript: ^4.5.2
@@ -25,7 +25,7 @@ importers:
       vue-tsc: ^0.29.8
     dependencies:
       '@vueuse/core': 7.1.2_vue@3.2.23
-      pinia: 2.0.4_typescript@4.5.2+vue@3.2.23
+      pinia: 2.0.5_typescript@4.5.2+vue@3.2.23
       vue: 3.2.23
       vue-router: 4.0.12_vue@3.2.23
     devDependencies:
@@ -1219,11 +1219,11 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.4_typescript@4.5.2+vue@3.2.23:
-    resolution: {integrity: sha512-nAc2f9HmOcBbWRlnGDuBGedM1G6uFAR10FnJWP1/dgm1I2tM5jbgKL/3IgynP4mBnPCy//ky7g0WpCZl5Mmxsg==}
+  /pinia/2.0.5_typescript@4.5.2+vue@3.2.23:
+    resolution: {integrity: sha512-RmHlvdnHdMib0RNaJ3Yiurtydk7t6eAe0+nlJuzdh+TeE7l3inLy8uw3aJM8oWMUv7ndMvoDV0LYMnfwPKOwmQ==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
-      typescript: ^4.4.4
+      typescript: ^4.5.2
       vue: ^2.6.14 || ^3.2.0
     peerDependenciesMeta:
       '@vue/composition-api':
