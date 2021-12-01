@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from "vue-router";
 import useAuth from "@/composables/useAuth";
 import Home from "@/views/Home.vue";
-import Login from "@/views/SignIn.vue";
+import SignIn from "@/views/SignIn.vue";
+import SignUp from "@/views/SignUp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 
 const { isAuthorized } = useAuth();
 const routes = [
   { path: "/", component: Home, name: "Home" },
-  { path: "/signin", component: Login, name: "SignIn" },
   { path: "/dashboard", component: Dashboard, name: "Dashboard" },
+  { path: "/signin", component: SignIn, name: "SignIn" },
+  { path: "/signup", component: SignUp, name: "SignUp" },
 ];
 const router = createRouter({
   history: createWebHistory(),
@@ -25,7 +27,8 @@ router.beforeEach(async (to, from, next) => {
       next({ name: "Dashboard" });
     else next();
   } else {
-    if (to.name !== "SignIn") next({ name: "SignIn" });
+    if (to.name === "SignUp") next();
+    else if (to.name !== "SignIn") next({ name: "SignIn" });
     else next();
   }
 });
