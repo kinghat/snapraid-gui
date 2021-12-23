@@ -5,14 +5,50 @@ const useAuth = () => {
   const isAuthorized = async () => {
     let isAuthorized = false;
     const mainStore = useMainStore();
-    const response = await fetch("http://localhost:8080/api/auth/authorize", {
+
+    await fetch("http://localhost:8080/api/auth/authorize", {
       method: "POST",
       credentials: "include",
-    });
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        console.log("leData:\n", data);
 
-    response.status === 202 ? (isAuthorized = true) : (isAuthorized = false);
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response statusText
+          // const error = (data && data.message) || response.statusText;
+          // return Promise.reject(error);
+          console.log("leResponse: ", response);
+          // await response.json().then((json) => {
+          //   console.log("leJson", json);
+
+          //   throw json;
+          // });
+        }
+        if (response) isAuthorized = response.status === 202;
+      })
+      .catch((error) => {
+        // if (error instanceof Error) {
+        //   console.log("instanceOfIsAuthorizedCatch:\n", error);
+        //   return { error };
+        // }
+        // await error.json();
+        console.log("isAuthorizedCatch:\n", error);
+      });
+    // try {
+    //   const response = await fetch("http://localhost:8080/api/auth/authorize", {
+    //     method: "POST",
+    //     credentials: "include",
+    //   });
+
+    //   if (response) isAuthorized = response.status === 202;
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     mainStore.isAuthorized = isAuthorized;
+    console.log("isAuthorized: ", isAuthorized);
 
     return isAuthorized;
   };

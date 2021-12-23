@@ -14,13 +14,13 @@
   onFetchResponse((response) => {
     console.log(`response.status: ${response.status}`);
 
-    router.push("/signup");
+    router.push("/signin");
   });
 
   onFetchError((error) => {
-    console.log(`error: ${error}`);
+    console.log("setupFetchError:\n", error);
 
-    router.push("/signin");
+    router.push("/setup");
   });
 </script>
 
