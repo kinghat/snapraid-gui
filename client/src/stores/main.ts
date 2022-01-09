@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useMainStore = defineStore("main", {
   // a function that returns a fresh state
   state: () => ({
+    hasServerConnection: false,
     isSetup: false,
     isAuthorized: false,
   }),

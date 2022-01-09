@@ -3,25 +3,25 @@
   import { useRouter } from "vue-router";
   import { useFetch } from "@vueuse/core";
 
-  const router = useRouter();
-  const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
-    "http://localhost:8080/api/setup",
-    // {
-    //   credentials: "include",
-    // },
-  ).get();
+  // const router = useRouter();
+  // const { onFetchResponse, onFetchError, error, data, statusCode } = useFetch(
+  //   "http://localhost:8080/api/setup",
+  //   // {
+  //   //   credentials: "include",
+  //   // },
+  // ).get();
 
-  onFetchResponse((response) => {
-    console.log(`response.status: ${response.status}`);
+  // onFetchResponse((response) => {
+  //   console.log(`response.status: ${response.status}`);
 
-    router.push("/signin");
-  });
+  //   router.push("/signin");
+  // });
 
-  onFetchError((error) => {
-    console.log("setupFetchError:\n", error);
+  // onFetchError((error) => {
+  //   console.log("setupFetchError:\n", error);
 
-    router.push("/setup");
-  });
+  //   router.push("/setup");
+  // });
 </script>
 
 <template>

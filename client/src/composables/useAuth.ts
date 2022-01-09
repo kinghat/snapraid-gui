@@ -1,10 +1,14 @@
+import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/main";
 import { useRouter } from "vue-router";
 
 const useAuth = () => {
   const isAuthorized = async () => {
     let isAuthorized = false;
-    const mainStore = useMainStore();
+    // const store = useMainStore();
+    // let { hasServerConnection } = storeToRefs(store);
+    let { hasServerConnection } = storeToRefs(useMainStore());
+    // let { hasServerConnection } = useMainStore();
 
     await fetch("http://localhost:8080/api/auth/authorize", {
       method: "POST",
@@ -27,6 +31,7 @@ const useAuth = () => {
           // });
         }
         if (response) isAuthorized = response.status === 202;
+        hasServerConnection.value = true;
       })
       .catch((error) => {
         // if (error instanceof Error) {
@@ -34,21 +39,11 @@ const useAuth = () => {
         //   return { error };
         // }
         // await error.json();
-        console.log("isAuthorizedCatch:\n", error);
+        hasServerConnection.value = false;
+        // console.log("isAuthorizedCatch:\n", error);
+        console.log("catch hasServerConnection: ", hasServerConnection);
       });
-    // try {
-    //   const response = await fetch("http://localhost:8080/api/auth/authorize", {
-    //     method: "POST",
-    //     credentials: "include",
-    //   });
-
-    //   if (response) isAuthorized = response.status === 202;
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    mainStore.isAuthorized = isAuthorized;
-    console.log("isAuthorized: ", isAuthorized);
+    isAuthorized = isAuthorized;
 
     return isAuthorized;
   };
