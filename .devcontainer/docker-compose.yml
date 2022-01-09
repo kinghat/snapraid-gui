@@ -5,7 +5,7 @@ services:
       dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: latest
-        DENO_VERSION: 1.16.4
+        DENO_VERSION: 1.17.2
         # VARIANT: 16
         # USERNAME: kinghat
       # environment:

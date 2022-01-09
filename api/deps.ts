@@ -9,7 +9,7 @@ import {
   RouterContext,
   RouterMiddleware,
   Status,
-} from "https://deno.land/x/oak@v10.0.0/mod.ts";
+} from "https://deno.land/x/oak@v10.1.0/mod.ts";
 // export { Application, Router, Context } from "https://deno.land/x/oak/mod.ts";
 export { Application, Context, Router, Status };
 // export type { RouterContext } from "https://deno.land/x/oak/mod.ts";
@@ -20,11 +20,11 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.116.0/fs/mod.ts";
-export { copy } from "https://deno.land/std@0.116.0/fs/copy.ts";
-export * as path from "https://deno.land/std@0.116.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.116.0/flags/mod.ts";
-// export * as bcrypt from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+} from "https://deno.land/std@0.120.0/fs/mod.ts";
+export { copy } from "https://deno.land/std@0.120.0/fs/copy.ts";
+export * as path from "https://deno.land/std@0.120.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.120.0/flags/mod.ts";
+// export * as bcrypt from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
 // export {
 //   create,
 //   decode,
@@ -37,7 +37,7 @@ export {
   DataTypes,
   Model,
   SQLite3Connector,
-} from "https://deno.land/x/denodb@v1.0.39/mod.ts";
+} from "https://deno.land/x/denodb@v1.0.40/mod.ts";
 export {
   compare,
   compareSync,
@@ -45,8 +45,8 @@ export {
   genSaltSync,
   hash,
   hashSync,
-} from "https://deno.land/x/bcrypt@v0.2.4/mod.ts";
+} from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
 export {
   Session,
   SqliteStore,
-} from "https://deno.land/x/oak_sessions@v3.2.1/mod.ts";
+} from "https://deno.land/x/oak_sessions@v3.2.3/mod.ts";
