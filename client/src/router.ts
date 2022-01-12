@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { storeToRefs } from "pinia";
 import { useMainStore } from "@/stores/main";
-
 import useAuth from "@/composables/useAuth";
+
 import Home from "@/views/Home.vue";
 import Setup from "@/views/Setup.vue";
 import SignIn from "@/views/SignIn.vue";
@@ -25,18 +26,26 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-const { isAuthorized } = useAuth();
-// const mainStore = useMainStore();
+// const { isAuthorized } = useAuth();
 
 router.beforeEach(async (to, from) => {
-  const isAuthorizedResponse = await isAuthorized();
-  const { hasServerConnection } = useMainStore();
+  // const isAuthorizedResponse = await isAuthorized();
+  const mainStore = useMainStore();
+  // const { hasServerConnection, isAuthorized } = storeToRefs(useMainStore());
+  // const { authorize } = useMainStore();
+  await mainStore.authorize();
 
-  if (!hasServerConnection) {
-    if (to.name !== "ConnectionRefused") {
-      return { name: "ConnectionRefused" };
-    }
-  } else if (isAuthorizedResponse) {
+  console.log("toRoute: ", to.name);
+  console.log("hasServerConnection: ", mainStore.hasServerConnection);
+  console.log("isAuthorized: ", mainStore.isAuthorized);
+
+  if (!mainStore.hasServerConnection) {
+    // console.log("hasServerConnection1: ", hasServerConnection);
+
+    // prevent infinite loop in route to self
+    if (to.name !== "ConnectionRefused") return { name: "ConnectionRefused" };
+    // } else if (isAuthorizedResponse) {
+  } else if (mainStore.isAuthorized) {
     const authorizedRoutes = ["Home", "SignIn"];
 
     if (typeof to.name === "string" && authorizedRoutes.includes(to.name)) {

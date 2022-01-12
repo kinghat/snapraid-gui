@@ -3,50 +3,39 @@ import { useMainStore } from "@/stores/main";
 import { useRouter } from "vue-router";
 
 const useAuth = () => {
-  const isAuthorized = async () => {
-    let isAuthorized = false;
-    // const store = useMainStore();
-    // let { hasServerConnection } = storeToRefs(store);
-    let { hasServerConnection } = storeToRefs(useMainStore());
-    // let { hasServerConnection } = useMainStore();
+  // const isAuthorized = async () => {
+  //   let isAuthorized = false;
+  //   let { hasServerConnection } = storeToRefs(useMainStore());
 
-    await fetch("http://localhost:8080/api/auth/authorize", {
-      method: "POST",
-      credentials: "include",
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        console.log("leData:\n", data);
+  //   await fetch("http://localhost:8080/api/auth/authorize", {
+  //     method: "POST",
+  //     credentials: "include",
+  //   })
+  //     .then(async (response) => {
+  //       const data = await response.json();
+  //       console.log("leData:\n", data);
 
-        // check for error response
-        if (!response.ok) {
-          // get error message from body or default to response statusText
-          // const error = (data && data.message) || response.statusText;
-          // return Promise.reject(error);
-          console.log("leResponse: ", response);
-          // await response.json().then((json) => {
-          //   console.log("leJson", json);
+  //       // check for error response
+  //       if (!response.ok) {
+  //         console.log("leResponse: ", response);
+  //       }
+  //       if (response) isAuthorized = response.status === 202;
+  //       hasServerConnection.value = true;
+  //     })
+  //     .catch((error) => {
+  //       // if (error instanceof Error) {
+  //       //   console.log("instanceOfIsAuthorizedCatch:\n", error);
+  //       //   return { error };
+  //       // }
+  //       // await error.json();
+  //       hasServerConnection.value = false;
+  //       console.log("catch hasServerConnection: ", hasServerConnection);
+  //       // console.log("isAuthorizedCatch:\n", error);
+  //     });
+  //   // isAuthorized = isAuthorized;
 
-          //   throw json;
-          // });
-        }
-        if (response) isAuthorized = response.status === 202;
-        hasServerConnection.value = true;
-      })
-      .catch((error) => {
-        // if (error instanceof Error) {
-        //   console.log("instanceOfIsAuthorizedCatch:\n", error);
-        //   return { error };
-        // }
-        // await error.json();
-        hasServerConnection.value = false;
-        // console.log("isAuthorizedCatch:\n", error);
-        console.log("catch hasServerConnection: ", hasServerConnection);
-      });
-    isAuthorized = isAuthorized;
-
-    return isAuthorized;
-  };
+  //   return isAuthorized;
+  // };
   const signOut = async () => {
     const router = useRouter();
 
@@ -58,7 +47,8 @@ const useAuth = () => {
     response.status === 200 ? router.push("/signin") : router.push("/signin");
   };
 
-  return { isAuthorized, signOut };
+  return { signOut };
+  // return { isAuthorized, signOut };
 };
 
 export default useAuth;
