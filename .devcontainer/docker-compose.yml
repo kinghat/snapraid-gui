@@ -5,10 +5,9 @@ services:
       dockerfile: test4.Dockerfile
       args:
         UBUNTU_TAG: latest
-        DENO_VERSION: 1.17.2
+        DENO_VERSION: 1.17.3
         # VARIANT: 16
         # USERNAME: kinghat
-      # environment:
     ports:
       - 8080:8080
       # - 3333:3000
@@ -22,7 +21,7 @@ services:
     #   - SYS_ADMIN
     #   - MKNOD
     # devices:
-    #   - /dev/loop24:/dev/loop24
+      # - /dev/loop24:/dev/loop24
     privileged: true
     device_cgroup_rules:
       - b 7:* rmw
