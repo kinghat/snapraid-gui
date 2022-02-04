@@ -13,15 +13,15 @@
     ).post({ username: username.value, password: password.value });
 
     onFetchResponse((response) => {
-      console.log(`response.status: ${response.status}`);
+      console.log(`signIn response.status: ${response.status}`);
 
       router.push("/dashboard");
     });
 
     onFetchError((error) => {
-      console.log(`error: ${error}`);
+      console.log(`signInError: ${error}`);
 
-      router.push("/signin");
+      router.push("/");
     });
   };
 </script>
@@ -37,7 +37,7 @@
           <span class="text-sm text-gray-700">Username</span>
           <input
             type="username"
-            class="block w-full mt-1 border-gray-200 rounded-md  focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+            class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
             v-model="username"
           />
         </label>
@@ -45,7 +45,7 @@
           <span class="text-sm text-gray-700">Password</span>
           <input
             type="password"
-            class="block w-full mt-1 border-gray-200 rounded-md  focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
+            class="block w-full mt-1 border-gray-200 rounded-md focus:border-indigo-600 focus:ring focus:ring-opacity-40 focus:ring-indigo-500"
             v-model="password"
           />
         </label>
@@ -72,7 +72,7 @@
         <div class="mt-6">
           <button
             type="submit"
-            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md  focus:outline-none hover:bg-indigo-500"
+            class="w-full px-4 py-2 text-sm text-center text-white bg-indigo-600 rounded-md focus:outline-none hover:bg-indigo-500"
           >
             Sign In
           </button>

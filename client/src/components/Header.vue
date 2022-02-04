@@ -32,32 +32,36 @@
       router.push("/signin");
     });
   };
+  const checkConnection = () => {
+    router.push("/");
+  };
 </script>
 
 <template>
   <header
-    class="flex items-center justify-between px-6 py-4 bg-white border-b-4 border-indigo-600 "
+    class="flex items-center justify-between px-6 py-4 bg-white border-b-4 border-indigo-600"
   >
     <div class="flex items-center">
-      <!-- <button
-        @click="isOpen = true"
-        class="text-gray-500 focus:outline-none lg:hidden"
-      >
-        <svg
-          class="w-6 h-6"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+      <!--
+        <button
+          @click="isOpen = true"
+          class="text-gray-500 focus:outline-none lg:hidden"
         >
-          <path
-            d="M4 6H20M4 12H20M4 18H11"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
+          <svg
+            class="w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 6H20M4 12H20M4 18H11"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
 
       <div class="relative mx-4 lg:mx-0">
         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -82,17 +86,24 @@
 
     <div class="flex items-center">
       <button
-        @click="signOut"
         v-if="mainStore.isAuthorized"
-        class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-indigo-600 rounded-md  hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+        @click="signOut"
+        class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
       >
         sign out
       </button>
-      <button
-        v-else=""
-        class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-indigo-600 rounded-md  hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+      <!-- <button
+        v-else-if="!mainStore.isAuthorized && mainStore.hasServerConnection"
+        class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
       >
         sign in
+      </button> -->
+      <button
+        v-else-if="!mainStore.isAuthorized && !mainStore.hasServerConnection"
+        @click="checkConnection"
+        class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:bg-indigo-500"
+      >
+        Check Connection
       </button>
       <!-- <button class="flex mx-4 text-gray-600 focus:outline-none">
         <svg
