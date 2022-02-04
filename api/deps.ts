@@ -1,5 +1,6 @@
 // check for updates:
 // deno run --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' --allow-read='.' --allow-write='deps.ts' https://deno.land/x/dmm@v1.3.2/mod.ts check
+// deno run --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' --allow-read='.' --allow-write='deps.ts' https://deno.land/x/dmm/mod.ts update
 export { config } from "https://deno.land/x/dot_env@0.2.0/mod.ts";
 import {
   Application,
@@ -20,10 +21,10 @@ export {
   exists,
   move,
   walk,
-} from "https://deno.land/std@0.121.0/fs/mod.ts";
-export { copy } from "https://deno.land/std@0.121.0/fs/copy.ts";
-export * as path from "https://deno.land/std@0.121.0/path/mod.ts";
-export { parse } from "https://deno.land/std@0.121.0/flags/mod.ts";
+} from "https://deno.land/std@0.122.0/fs/mod.ts";
+export { copy } from "https://deno.land/std@0.122.0/fs/copy.ts";
+export * as path from "https://deno.land/std@0.122.0/path/mod.ts";
+export { parse } from "https://deno.land/std@0.122.0/flags/mod.ts";
 // export * as bcrypt from "https://deno.land/x/bcrypt@v0.3.0/mod.ts";
 // export {
 //   create,
